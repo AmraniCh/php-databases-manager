@@ -3,17 +3,21 @@
 class UserManager
 {
     /**
-     * add new user
+     * add a new user;
+     * PS: When mysql creates a new user, it encrypts the password,
+     * and there is no easy way to decrypt it since we don't know how the encryption works,
+     * so after creating the user, we should update the password to a normal string
      */
-    public static function createUser ($username, $password, $connection) : bool
+    public static function createUser ($username, $password, $connection)
     {
-        return $connection->query (QueryHelper::create_user($username, $password));
+        if (!$connection->query (QueryHelper::create_user($username, $password)))
+            throw new Exception("User could not be created");
     }
 
     /**
      * drop existing user
      */
-    public static function dropUser ($username, $connection) : bool
+    public static function dropUser ($username, $connection)
     {
         return $connection->query (QueryHelper::drop_user ($username));
     }
@@ -34,7 +38,7 @@ class UserManager
         foreach (self::getUsers($connection) as $user)
             if (strcmp ($username, $user["User"]) == 0)
                 return $user;
-
+            
         return null;
     }
 
