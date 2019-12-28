@@ -17,7 +17,10 @@ try
             break;
 
         case "signIn":
-            echo (UserManager::signIn ($_POST["user"], $_POST["pass"], $manager->connection));
+            if (UserManager::signIn ($_POST["user"], $_POST["pass"], $manager->connection))
+                $manager->connect ("localhost", $_POST["user"], $_POST["pass"]);
+
+            echo json_encode (true);
             break;
 
         case "signIn":

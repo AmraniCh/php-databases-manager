@@ -68,13 +68,19 @@ class UserManager
         if ($user == null)
           throw new Exception ("Connection to database has failed");
 
-        /** checking password */
+        /** retrieving and checking password */
+        $encryptionQuery = $connection->query ("SELECT PASSWORD ('$password')");
+        $encryptedPassword = $encryptionQuery->fetch_row ()[0];
+
+        if (strcmp ($user["Password"], $encryptedPassword) != 0)
+            throw new Exception ("Connection to database has failed");
+
         session_start ();
 
         $_SESSION["user"] = $username;
         $_SESSION["pass"] = $password;
 
-        return json_encode(true);
+        return true;
     }
 
     /**
