@@ -29,7 +29,7 @@ try
             break;
 
         case "tables":
-            echo json_encode ($manager->getDatabase ($_POST["database"])->tables);
+            echo json_encode ($manager->getDatabase ($_POST["database"])->getTableNames ());
             break;
 
         case "table":

@@ -52,7 +52,7 @@ class Manager implements Container
             if (strcmp ($d->name, $databaseName) == 0)
                 return $d;
 
-        return !true;
+        return null;
     }
 
     public function getTable ($databaseName, $tableName)

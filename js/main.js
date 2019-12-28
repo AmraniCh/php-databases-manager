@@ -85,8 +85,8 @@ $(document).ready(function(){
           dataType: "JSON",
           async: false,
           success: function(data){
-            console.log(data);
-            console.log(columns(data)); // shuf function li 3mleti kat3ti error
+            console.log(data.rows);
+            console.log(dataTableColumns (columns(data.rows))); // shuf function li 3mleti kat3ti error
           }
         })
 
@@ -156,15 +156,38 @@ $(document).ready(function(){
   });
 
   // GET ALL DATABASES NAMES
-  (function(){
+  (function () {
     // brahim => hnaya ajax li katjib databases names
     // => component haw 3andk exemple dyalu f => home.php => sidebar section
+    ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (data) {
+      alert(data)
+    });
   }());
 
   // DATABASE ITEM CLICK
-  // brahim => hnaya ajax li katjib tables [ name, rowsCount, size ]
-  // => component haw 3andk exemple dyalu f => home.php => sidebar section
-  $(document).on("click", ".database-item", function(){
+  $(document).on("click", ".database-item", function () {
+    // Retrieve clicked database
+    var databaseName = $(this).data("db");
+
+    ajax ("modules/handler.php", "POST", {type:'tables', database: databaseName}, "JSON", function (data){
+      console.log ("database table names");
+      console.log (data);
+    });
+  })
+
+  // TABLE ITEM CLICK
+  $(document).on("click", ".table-item", function () {
+    // Retrieve selected table
+    var databaseName = $(".table-item.selected").data("db");
+    var tableName = $(".table-item.selected").data("table");
+
+    ajax ("modules/handler.php", "post", {
+      type:'table',
+      database: databaseName,
+      table: tableName
+    }, "JSON", function (data){
+      alert (data.rows)
+    });
   })
 
 })
