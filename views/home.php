@@ -34,16 +34,22 @@
         <div class="settings-menu">
           <ul class="list-unstyled">
             <li>
-              <i class="mdi mdi-settings"></i>
-              <span>settings</span>
+              <button id="settings-page" type="button" class="btn">
+                <i class="mdi mdi-settings"></i>
+                <span>settings</span>
+              </button>
             </li>
             <li>
-              <i class="mdi mdi-lock"></i>
-              <span>permissions</span>
+              <button id="permissions-page" type="button" class="btn">
+                <i class="mdi mdi-lock"></i>
+                <span>permissions</span>
+              </button>
             </li>
             <li>
-              <i class="mdi mdi-logout"></i>
-              <span>logout</span>
+              <button id="logout-btn" type="button" class="btn">
+                <i class="mdi mdi-logout"></i>
+                <span>logout</span>
+              </button>
             </li>
           </ul>
         </div>
@@ -98,7 +104,7 @@
     <!-- START SECTION CONTAINER -->
       <div id="ajx-content" class="section-container text-color">
 
-        <h1 class="no-selected text-center">no database selected</h1>
+        <h1 class="no-selected text-center">no database table selected</h1>
 
       </div>
     <!-- END SECTION CONTAINER -->

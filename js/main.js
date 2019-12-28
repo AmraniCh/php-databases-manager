@@ -1,9 +1,6 @@
 
 "use strict"
 
-// LOAD TIMING FOR LOADERS
-const loadTiming = { "StraightLoader_Timing": 1200 }
-
 // CONTENT VIEW TYPE
 var content_view = 1; // 1 = Tabs View & 2 = Vertical View
 
@@ -44,7 +41,7 @@ $(document).ready(function(){
         getAllDatabasesNames()
       },
       function(){
-        RoundedLoader("show", loadTiming.RoundedLoader_Timing, "connection to database...")
+        RoundedLoader("show", "connection to database...")
         $(".login-container").css({
           "user-select": "none",
           "opacity": ".4"
@@ -153,6 +150,11 @@ $(document).ready(function(){
     });
   });
 
+  // PERSMISSIONS PAGE MENU BUTTON CLICK
+  $(document).on("click", "#permissions-page", function(){
+
+  });
+
 });
 
 // STRAIGHT LOADER
@@ -174,7 +176,7 @@ function StraightLoader(action){
 }
 
 // ROUNDED LOADER
-function RoundedLoader(action, loadTiming, text){
+function RoundedLoader(action, text){
   if( action === "show" ){
     $(".loader-rounded").show()
     $(".loader-rounded .loader-text").text(text)
@@ -203,7 +205,7 @@ function tableData_Initialize(){
       StraightLoader("show")
     },
     success: function(json){
-      StraightLoader("hide", loadTiming.StraightLoader_Timing)
+      StraightLoader("hide")
 
       var cols = columns (json.rows);
 
@@ -241,7 +243,7 @@ function tableStructure_Initialize(){
       StraightLoader("show")
     },
     success: function(json){
-      StraightLoader("hide", loadTiming.StraightLoader_Timing)
+      StraightLoader("hide")
 
       var cols = columns (json.columns);
 
