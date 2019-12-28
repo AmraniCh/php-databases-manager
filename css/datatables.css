@@ -1,0 +1,10 @@
+/* BOOTSTRAP DATABALES CSS */
+.paginate_button{
+    color: var(--black) !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+a.paginate_button.current{
+  background: var(--blue) !important;
+  color: #FFF !important
+}

@@ -1,0 +1,10 @@
+/* LOADER ANIMATION */
+@keyframes loaderAnim{
+  from { width: 0% }
+  to{ width: 100%}
+}
+
+@keyframes roundedLoaderAnim{
+  from { transform: rotate(-360deg) }
+  to{ transform: rotate(360deg) }
+}

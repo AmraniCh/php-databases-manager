@@ -1,0 +1,47 @@
+/* START STRAIGHT LOADER */
+.loader-straight{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background-color: var(--green)
+}
+
+.loader-straight .loader-content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  background-color: var(--blue);
+  height: 12px;
+  animation: loaderAnim 1.2s ease
+}
+
+/* START ROUNDED LOADER */
+.loader-rounded .loader-content{
+  position: fixed;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  height: 60px;
+  width: 60px;
+  margin: auto;
+  border-radius: 50%;
+  border: 10px solid var(--green);
+  border-top: 10px solid var(--blue);
+  animation: roundedLoaderAnim 2s linear infinite;
+}
+
+
+.loader-rounded .loader-text{
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  text-transform: capitalize;
+  user-select: none;
+}
+
+.loader-rounded { display: none }
+.loader-rounded.active{ display: block }
