@@ -71,7 +71,7 @@ class Manager implements Container
                 "count" => $d->count()
             ];
 
-        return json_encode ($arr);
+        return $arr;
     }
 
     public function add ($item)

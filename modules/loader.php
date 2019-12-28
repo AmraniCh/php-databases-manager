@@ -1,6 +1,6 @@
 <?php
 
-$root = $_SERVER["DOCUMENT_ROOT"] . "/DatabaseManagerAPI";
+$root = $_SERVER["DOCUMENT_ROOT"] . "/DatabasesManager";
 
 $host = "localhost";
 $user = "root";
