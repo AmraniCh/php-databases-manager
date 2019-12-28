@@ -72,40 +72,44 @@ $(document).ready(function(){
         const databaseName = $(".table-item.selected").data("db")
         const tableName = $(".table-item.selected").data("table")
 
+
+        // BRAHIM DataTable
         $.ajax ({
-          url: "modules/getTableData.php",
+          url: "modules/handler.php",
           type: "POST",
           data: {
+            type: "table",
             database: databaseName,
             table: tableName
           },
           dataType: "JSON",
           async: false,
           success: function(data){
-            cols = data['columns']
+            console.log(data);
+            console.log(columns(data)); // shuf function li 3mleti kat3ti error
           }
         })
 
-        $('#table-data').dataTable({
-          destroy: true,
-          "pagingType": "simple_numbers",
-          "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ],
-          ajax: {
-            url: "modules/handler.php",
-            type: "POST",
-            async: false,
-            data: {
-              type: "table",
-              database: databaseName,
-              table: tableName
-            },
-            dataType: "JSON",
-            dataSrc: function(json){
-              return json.rows;
-            }
-          },
-          columns: cols
-        })
+        // $('#table-data').dataTable({
+        //   destroy: true,
+        //   "pagingType": "simple_numbers",
+        //   "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ],
+        //   ajax: {
+        //     url: "modules/handler.php",
+        //     type: "POST",
+        //     data: {
+        //       type: "table",
+        //       database: databaseName,
+        //       table: tableName
+        //     },
+        //     async: false,
+        //     dataType: "JSON",
+        //     dataSrc: function(json){
+        //       dataTableColumns(json);
+        //     }
+        //   },
+        //   columns: cols
+        // })
 
 
       }
