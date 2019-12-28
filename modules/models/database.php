@@ -74,4 +74,21 @@ class Database implements Container
     {
         return count ($this->tables);
     }
+
+    /**
+     * Method for fetching tables in a custom JSON structure
+     */
+    public function fetchTablesJSON ()
+    {
+        $tables = [];
+
+        foreach ($this->tables as $t) 
+            $tables[] = [
+                "name" => $t->name,
+                "size" => $t->size, 
+                "count" => $t->count()
+            ];
+
+        return $tables;
+    }
 }
