@@ -103,16 +103,16 @@ p{ margin: 0 }
 .toggle-table-btn{
   background-color: var(--green);
   color: #FFF;
-  padding: 5px 6px;
-  width: 150px;
+  padding: 8px;
+  width: 100%;
   font-size: 1.2em;
   font-weight: 500;
   margin: 25px 0;
   border-radius: 1px;
-  box-shadow: 0 0 4px 0px #333
+  box-shadow: 0 0 2px 0px #333
 }
 
-.toggle-table-btn span{ margin-left: 10px }
+.toggle-table-btn span{ margin-left: 15px }
 
 .toggle-table-btn[data-toggle='open'] .mdi.open{ display: inline-block }
 .toggle-table-btn[data-toggle='close'] .mdi.close{ display: inline-block }

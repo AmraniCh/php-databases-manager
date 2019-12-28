@@ -54,19 +54,24 @@ $(document).ready(function(){
 
   // TABLE ITEM CLICK
   $(document).on("click", ".table-item", function(){
+
     $(".table-item").each(function(){ $(this).removeClass("selected") })
     $(this).closest(".table-item").addClass("selected")
 
+    const $this = $(this);
+    var tableName = null;
+    var tableRowsCount = 0;
+
     // GET TABLE DATA & STRUCTURE
-    ajax(
-      "views/tableDataTabsView.php",
-      "GET",
-      'database='+$(this).data("db")+"&table="+$(this).data("table"),
-      "HTML",
-      function(data){
+    ajax( "views/tableDataTabsView.php", "GET", 'database='+$(this).data("db")+"&table="+$(this).data("table"), "HTML", function(data){
         $("#ajx-content").empty().html(data)
+        tableName = $this.data("db")
+        tableRowsCount = $this.find(".table-count").text()
         tableData_Initialize()
         tableStructure_Initialize()
+      }, function(){
+        $("#table-name").text(tableName)
+        $("#table-rows").text(tableRowsCount)
       }
     );
   })
@@ -115,16 +120,16 @@ $(document).ready(function(){
 
       $.each(json, function(index){
 
-        $this.closest(".database-toggle").children(".database-table-items").append(`<div class="table-item panel-item light-blue" data-table="${json[index]}" data-db="${databaseName}">
+        $this.closest(".database-toggle").children(".database-table-items").append(`<div class="table-item panel-item light-blue" data-table="${json[index].name}" data-db="${databaseName}">
             <ul class="list-unstyled list-inline float-lt">
               <li>
                 <button type="button" class="btn">
                   <i class="icon-big mdi mdi-table"></i>
                 </button>
               </li>
-              <li>${json[index]}</li>
+              <li>${json[index].name} (<span class="table-count">${json[index].count}</span>)</li>
             </ul>
-            <div class="table-size float-rt">112 Kib</div>
+            <div class="table-size float-rt">${json[index].size} KIB</div>
             <div class="clearfix"></div>
           </div>`);
       })
@@ -134,21 +139,6 @@ $(document).ready(function(){
 
 
   })
-
-  // TABLE ITEM CLICK
-  $(document).on("click", ".table-item", function () {
-    // Retrieve selected table
-    var databaseName = $(".table-item.selected").data("db");
-    var tableName = $(".table-item.selected").data("table");
-
-    ajax ("modules/handler.php", "post", {
-      type:'table',
-      database: databaseName,
-      table: tableName
-    }, "JSON", function (data){
-      alert (data.rows)
-    });
-  });
 
   // PERSMISSIONS PAGE MENU BUTTON CLICK
   $(document).on("click", "#permissions-page", function(){
@@ -263,9 +253,7 @@ function tableStructure_Initialize(){
 // GET ALL DATABASES NAMES
 function getAllDatabasesNames(){
 
-  ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (data) {
-
-    var json = JSON.parse(data);
+  ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (json) {
 
     $.each(json, function(index, element){
       const dbName = json[index].name;
