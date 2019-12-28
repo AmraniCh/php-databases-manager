@@ -60,11 +60,11 @@ $(document).ready(function(){
     const dataType = $this.data("type")
     const toggle = $this.attr("data-toggle")
     if( toggle == "open" ){
-      ( dataType == "data" ) ? $("#table-data_wrapper").fadeOut("fast") : $("#table-structure_wrapper").fadeOut("fast")
+      ( dataType == "data" ) ? $("#table-data_wrapper").hide(0) : $("#table-structure_wrapper").hide(0)
       $this.attr("data-toggle", "close")
     }
     else{
-      ( dataType == "data" ) ? $("#table-data_wrapper").fadeIn("fast") : $("#table-structure_wrapper").fadeIn("fast")
+      ( dataType == "data" ) ? $("#table-data_wrapper").show(0) : $("#table-structure_wrapper").show(0)
       $this.attr("data-toggle", "open")
     }
 

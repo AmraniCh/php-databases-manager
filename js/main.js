@@ -1,14 +1,14 @@
 
 "use strict"
 
+// LOAD TIMING FOR LOADERS
+const loadTiming = { "StraightLoader_Timing": 1200 }
+
+// CONTENT VIEW TYPE
+var content_view = 1; // 1 = Tabs View & 2 = Vertical View
+
 
 $(document).ready(function(){
-
-  // CONTENT VIEW TYPE
-  var content_view = 1; // 1 = Tabs View & 2 = Vertical View
-
-  // LOAD TIMING FOR LOADERS
-  const loadTiming = { "StraightLoader_Timing": 1200 }
 
   // CONNECTION TO DATABASE BUTTON CLICK
   $(document).on("click", "#connection-btn", function(){
@@ -25,7 +25,12 @@ $(document).ready(function(){
       "JSON",
       function(data){
         if( data == true ){
-          $.post("views/home.php", function(data){ $("#ajx-page").empty().html(data).hide().fadeIn("500") })
+          $.post("views/home.php", function(data){
+            $("#ajx-page").empty().html(data).hide().fadeIn("500")
+            // NO SELECTED HEADING ADJUST HEIGHT
+            const contentHeight = $(".section-container").height() / 2
+            $(".no-selected").css("padding-top", contentHeight - 50)
+          })
         }
         else{
           $(".login-container").css({
@@ -63,60 +68,10 @@ $(document).ready(function(){
       "HTML",
       function(data){
         $("#ajx-content").empty().html(data)
-        StraightLoader("show")
-      },
-      function() {
-        StraightLoader("hide", loadTiming.StraightLoader_Timing)
-
-        var cols = null;
-        const databaseName = $(".table-item.selected").data("db")
-        const tableName = $(".table-item.selected").data("table")
-
-
-        // BRAHIM DataTable
-        $.ajax ({
-          url: "modules/handler.php",
-          type: "POST",
-          data: {
-            type: "table",
-            database: databaseName,
-            table: tableName
-          },
-          dataType: "JSON",
-          async: false,
-          success: function(data){
-            console.log(data);
-            console.log(columns(data)); // shuf function li 3mleti kat3ti error
-          }
-        })
-
-        // $('#table-data').dataTable({
-        //   destroy: true,
-        //   "pagingType": "simple_numbers",
-        //   "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ],
-        //   ajax: {
-        //     url: "modules/handler.php",
-        //     type: "POST",
-        //     data: {
-        //       type: "table",
-        //       database: databaseName,
-        //       table: tableName
-        //     },
-        //     async: false,
-        //     dataType: "JSON",
-        //     dataSrc: function(json){
-        //       dataTableColumns(json);
-        //     }
-        //   },
-        //   columns: cols
-        // })
-
-
+        tableData_Initialize()
+        tableStructure_Initialize()
       }
     );
-
-    //tableStructure_Initialize()
-    if( content_view == 1 ) $("#table-structure_wrapper").hide(0)
   })
 
   // CHANGE VIEW BUTTON CLICK
@@ -131,10 +86,8 @@ $(document).ready(function(){
         "HTML",
         function(data){
           $("#ajx-content").html(data).hide().fadeIn(600)
-        },
-        function(){
-          tableStructure_Initialize()
           tableData_Initialize()
+          tableStructure_Initialize()
         }
       )
     }else{
@@ -146,20 +99,16 @@ $(document).ready(function(){
         "HTML",
         function(data){
           $("#ajx-content").html(data).hide().fadeIn(600)
-        },
-        function(){
-          tableStructure_Initialize()
           tableData_Initialize()
+          tableStructure_Initialize()
         }
       )
     }
+
   });
 
   // GET ALL DATABASES NAMES
-  (function(){
-    // brahim => hnaya ajax li katjib databases names
-    // => component haw 3andk exemple dyalu f => home.php => sidebar section
-  }());
+
 
   // DATABASE ITEM CLICK
   // brahim => hnaya ajax li katjib tables [ name, rowsCount, size ]
@@ -170,21 +119,21 @@ $(document).ready(function(){
 })
 
 // STRAIGHT LOADER
-function StraightLoader(action, loadTiming = null){
-  $(".section-container").css({
-    opacity: ".2",
-    "user-select": "none"
-  })
+function StraightLoader(action){
   if( action === "hide" ){
-    setTimeout(function(){
       $(".loader-straight").hide()
         $(".section-container").css({
           opacity: "1",
           "user-select": "initial"
         })
-    }, loadTiming)
   }
-  if( action === "show" ) $(".loader-straight").show()
+  if( action === "show" ){
+     $(".loader-straight").show()
+     $(".section-container").css({
+       opacity: ".2",
+       "user-select": "none"
+     })
+   }
 }
 
 // ROUNDED LOADER
@@ -201,8 +150,6 @@ function RoundedLoader(action, loadTiming, text){
 function tableData_Initialize(){
 
   // VARIABLES
-  var cols = null;
-  var rows = null;
   const databaseName = $(".table-item.selected").data("db")
   const tableName = $(".table-item.selected").data("table")
 
@@ -215,67 +162,61 @@ function tableData_Initialize(){
       database: databaseName
     },
     dataType: "JSON",
-    success: function(data){
-      cols = data['columns']
-      console.log(cols);
+    beforeSend: function(){
+      StraightLoader("show")
+    },
+    success: function(json){
+      StraightLoader("hide", loadTiming.StraightLoader_Timing)
+
+      var cols = columns (json.rows);
+
+      $("#table-data thead").children ().empty ();
+      cols.forEach (e => $("#table-data thead").append ("<th>" + e + "</th>"));
+
+      $("#table-data").DataTable ({
+          destroy: false,
+          data: json.rows,
+          columns: dataTableColumns (cols)
+      });
+
     }
   })
 
-  $('#table-data').DataTable({
-    destroy: true,
-    "pagingType": "simple_numbers",
-    "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ],
-    ajax: {
-      url: "modules/handler.php",
-      type: "POST",
-      data: {
-        type: "table",
-        table: tableName,
-        database: databaseName
-      },
-      dataType: "JSON"
-    },
-    columns: cols
-  })
 }
 
 // DATABALE INITIALIZE (Structure)
 function tableStructure_Initialize(){
 
   // VARIABLES
-  var cols = null;
   const databaseName = $(".table-item.selected").data("db")
   const tableName = $(".table-item.selected").data("table")
 
-  // GET DATATABLE COLUMNS
   $.ajax ({
-    url: "../includes/getTableData.php",
+    url: "modules/handler.php",
     type: "POST",
     data: {
-      database: databaseName,
-      table: tableName
+      type: "table",
+      table: tableName,
+      database: databaseName
     },
     dataType: "JSON",
-    success: function(data){
-      cols = data['columns']
-    }
-  })
-
-  // DATABALE INITIALIZE (Data)
-  $('#table-structure').dataTable({
-    destroy: true,
-    "pagingType": "simple_numbers",
-    "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ],
-    ajax: {
-      url: "../includes/getTableData.php",
-      type: "POST",
-      data: {
-        database: databaseName,
-        table: tableName
-      },
-      dataType: "JSON"
+    beforeSend: function(){
+      StraightLoader("show")
     },
-    columns: cols
-  })
+    success: function(json){
+      StraightLoader("hide", loadTiming.StraightLoader_Timing)
+
+      var cols = columns (json.columns);
+
+      $("#table-structure thead").children ().empty ();
+      cols.forEach (e => $("#table-structure thead").append ("<th>" + e + "</th>"));
+
+      $("#table-structure").DataTable ({
+          destroy: false,
+          data: json.columns,
+          columns: dataTableColumns ( columns (json.columns) )
+      });
+    }
+  });
 
 }

@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="css/animation.css">
     <link rel="stylesheet" href="css/loaders.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
+
     <title>Databases Manager</title>
   </head>
   <body>
@@ -66,11 +69,11 @@
     </div>
     <!-- END LOADER -->
 
-    <!-- JS DEPENDENCIES -->
+    <!-- SCRIPTS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/utilities.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/components.js"></script>
+    <script src="js/componenets.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
   </body>
