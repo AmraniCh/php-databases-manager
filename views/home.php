@@ -79,46 +79,6 @@
   <!-- START SIDEBAR ITEMS -->
   <div class="sidebar-databases-items">
 
-    <!-- START DATABASE ITEM -->
-    <div class="database-toggle">
-      <div class="database-item panel-item blue" data-toggle="close" data-db="db_travail_final_1">
-        <ul class="list-unstyled list-inline float-lt">
-          <li>
-            <button type="button" class="btn">
-              <i class="icon-big mdi mdi-database"></i>
-            </button>
-          </li>
-          <li>db_travail_final_1(0)</li>
-        </ul>
-        <button type="button" class="btn float-rt hide" data-value="close">
-          <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
-        </button>
-        <button type="button" class="btn float-rt hide" data-value="open">
-          <i class="icon-big mdi mdi-arrow-up-drop-circle"></i>
-        </button>
-        <div class="clearfix"></div>
-      </div>
-      <!-- END DATABASE ITEMS -->
-
-      <!-- START TABLE ITEMS -->
-      <div class="database-table-items hide">
-        <div class="table-item panel-item light-blue" data-table="personnage" data-db="db_travail_final_1">
-          <ul class="list-unstyled list-inline float-lt">
-            <li>
-              <button type="button" class="btn">
-                <i class="icon-big mdi mdi-table"></i>
-              </button>
-            </li>
-            <li>personnage(0)</li>
-          </ul>
-          <div class="table-size float-rt">112 Kib</div>
-          <div class="clearfix"></div>
-        </div>
-        <!-- END TABLE ITEM -->
-      </div>
-      <!-- END TABLE ITEMS -->
-    </div>
-    <!-- END DATABASE ITEM -->
 
   </div>
   <!-- END SIDEBAR ITEMS -->

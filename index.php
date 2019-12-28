@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
+
     <link rel="stylesheet" href="css/normalize.css/normalize.css">
     <link rel="stylesheet" href="css/standard.css">
     <link rel="stylesheet" href="css/app.css">
@@ -21,8 +24,6 @@
     <link rel="stylesheet" href="css/animation.css">
     <link rel="stylesheet" href="css/loaders.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
 
     <title>Databases Manager</title>
   </head>

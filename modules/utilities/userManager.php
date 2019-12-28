@@ -3,17 +3,21 @@
 class UserManager
 {
     /**
-     * add new user
+     * add a new user;
+     * PS: When mysql creates a new user, it encrypts the password,
+     * and there is no easy way to decrypt it since we don't know how the encryption works,
+     * so after creating the user, we should update the password to a normal string
      */
-    public static function createUser ($username, $password, $connection) : bool
+    public static function createUser ($username, $password, $connection)
     {
-        return $connection->query (QueryHelper::create_user($username, $password));
+        if (!$connection->query (QueryHelper::create_user($username, $password)))
+            throw new Exception("User could not be created");
     }
 
     /**
      * drop existing user
      */
-    public static function dropUser ($username, $connection) : bool
+    public static function dropUser ($username, $connection)
     {
         return $connection->query (QueryHelper::drop_user ($username));
     }
@@ -64,13 +68,22 @@ class UserManager
         if ($user == null)
           throw new Exception ("Connection to database has failed");
 
-        /** checking password */
+        /** retrieving and checking password */
+        if( isset($user['Password']) ){
+
+          $encryptionQuery = $connection->query ("SELECT PASSWORD ('$password')");
+          $encryptedPassword = $encryptionQuery->fetch_row ()[0];
+
+          if (strcmp ($user["Password"], $encryptedPassword) != 0)
+              throw new Exception ("Connection to database has failed");
+        }
+
         session_start ();
 
         $_SESSION["user"] = $username;
         $_SESSION["pass"] = $password;
 
-        return json_encode(true);
+        return true;
     }
 
     /**

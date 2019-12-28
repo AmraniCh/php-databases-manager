@@ -28,22 +28,22 @@ class QueryHelper
 
     public static function create_user ($username, $password)
     {
-        return "CREATE USER '$username' IDENTIFIED BY '$password'";
+        return "CREATE USER '$username'@'localhost' IDENTIFIED BY '$password'";
     }
 
     public static function drop_user ($username)
     {
-        return "DROP USER '$username'";
+        return "DROP USER '$username'@'localhost'";
     }
 
     public static function grant_permission ($user, $privilege, $table, $database)
     {
-        return "GRANT $privilege ON $database.$table TO '$user'";
+        return "GRANT $privilege ON $database.$table TO '$user'@'localhost'";
     }
 
     public static function revoke_permission ($user, $privilege, $table, $database)
     {
-        return "REVOKE $privilege ON $database.$table FROM '$user'";
+        return "REVOKE $privilege ON $database.$table FROM '$user'@'localhost'";
     }
 
     public static function exec_query ($query, $connection)

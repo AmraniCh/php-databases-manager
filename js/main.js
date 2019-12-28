@@ -7,7 +7,6 @@ const loadTiming = { "StraightLoader_Timing": 1200 }
 // CONTENT VIEW TYPE
 var content_view = 1; // 1 = Tabs View & 2 = Vertical View
 
-
 $(document).ready(function(){
 
   // CONNECTION TO DATABASE BUTTON CLICK
@@ -42,6 +41,7 @@ $(document).ready(function(){
       },
       function(){
         RoundedLoader("hide")
+        getAllDatabasesNames()
       },
       function(){
         RoundedLoader("show", loadTiming.RoundedLoader_Timing, "connection to database...")
@@ -107,16 +107,53 @@ $(document).ready(function(){
 
   });
 
-  // GET ALL DATABASES NAMES
-
-
   // DATABASE ITEM CLICK
-  // brahim => hnaya ajax li katjib tables [ name, rowsCount, size ]
-  // => component haw 3andk exemple dyalu f => home.php => sidebar section
-  $(document).on("click", ".database-item", function(){
+  $(document).on("click", ".database-item", function () {
+    // Retrieve clicked database
+    const databaseName = $(this).data("db");
+
+    const $this = $(this);
+
+    ajax ("modules/handler.php", "POST", {type:'tables', database: databaseName}, "JSON", function (json){
+
+      $.each(json, function(index){
+
+        $this.closest(".database-toggle").children(".database-table-items").append(`<div class="table-item panel-item light-blue" data-table="${json[index]}" data-db="${databaseName}">
+            <ul class="list-unstyled list-inline float-lt">
+              <li>
+                <button type="button" class="btn">
+                  <i class="icon-big mdi mdi-table"></i>
+                </button>
+              </li>
+              <li>${json[index]}</li>
+            </ul>
+            <div class="table-size float-rt">112 Kib</div>
+            <div class="clearfix"></div>
+          </div>`);
+      })
+
+    });
+
+
+
   })
 
-})
+  // TABLE ITEM CLICK
+  $(document).on("click", ".table-item", function () {
+    // Retrieve selected table
+    var databaseName = $(".table-item.selected").data("db");
+    var tableName = $(".table-item.selected").data("table");
+
+    ajax ("modules/handler.php", "post", {
+      type:'table',
+      database: databaseName,
+      table: tableName
+    }, "JSON", function (data){
+      alert (data.rows)
+    });
+  });
+
+});
 
 // STRAIGHT LOADER
 function StraightLoader(action){
@@ -217,6 +254,43 @@ function tableStructure_Initialize(){
           columns: dataTableColumns ( columns (json.columns) )
       });
     }
+  });
+
+}
+
+// GET ALL DATABASES NAMES
+function getAllDatabasesNames(){
+
+  ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (data) {
+
+    var json = JSON.parse(data);
+
+    $.each(json, function(index, element){
+      const dbName = json[index].name;
+      const dbCount = json[index].count;
+      $(".sidebar-databases-items").append(`<div class="database-toggle">
+        <div class="database-item panel-item blue" data-toggle="close" data-db="${dbName}">
+          <ul class="list-unstyled list-inline float-lt">
+            <li>
+              <button type="button" class="btn">
+                <i class="icon-big mdi mdi-database"></i>
+              </button>
+            </li>
+            <li>${dbName} (${dbCount})</li>
+          </ul>
+          <button type="button" class="btn float-rt hide" data-value="close">
+            <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
+          </button>
+          <button type="button" class="btn float-rt hide" data-value="open">
+            <i class="icon-big mdi mdi-arrow-up-drop-circle"></i>
+          </button>
+          <div class="clearfix"></div>
+        </div>
+        <div class="database-table-items hide">
+        </div>
+        </div>`);
+    })
+
   });
 
 }

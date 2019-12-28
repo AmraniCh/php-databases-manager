@@ -218,7 +218,7 @@
 
 
 /* LOGIN CONTAINER */
-body{ background-color: var(--blue) } /* BUTTOM SKEW SHAPE */
+body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 
 .login-container{
   height: 70vh;
