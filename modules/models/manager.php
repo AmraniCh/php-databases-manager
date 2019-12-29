@@ -32,7 +32,7 @@ class Manager implements Container
         $names = [];
 
         // Except already existed databases
-        $exceptions = ["information_schema", "performance_schema", "phpmyadmin", "mysql"];
+        $exceptions = ["information_schema", "performance_schema", "phpmyadmin", "mysql", "sys"];
 
         while($db = $set->fetch_row())
             if (!in_array($db[0], $exceptions))
