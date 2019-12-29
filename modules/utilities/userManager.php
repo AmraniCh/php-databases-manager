@@ -41,6 +41,19 @@ class UserManager
 
         return null;
     }
+    
+    /**
+     * Get user names
+     */
+    public static function getUserNames ($connection) : array
+    {
+        $names = [];
+
+        foreach (self::getUsers ($connection) as $row)
+            $names[] = ["name" => $row["User"], "host" => $row['Host']];
+
+        return $names;
+    }
 
     /**
      * Grant permission
