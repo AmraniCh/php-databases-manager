@@ -71,7 +71,7 @@ class Manager implements Container
                 "count" => $d->count()
             ];
 
-        return $arr;
+        return ["databases" => $arr, "count" => $this->count ()];
     }
 
     public function add ($item)
