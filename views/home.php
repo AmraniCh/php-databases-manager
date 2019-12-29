@@ -67,7 +67,7 @@
       </div>
     <!-- END SECTION CONTAINER -->
 
-    <?php include "componenets/tableEdit.html" ?>
+    <?php include "componenets/editModal.html" ?>
 
   </div>
   <!-- END INNER CONTAINER -->

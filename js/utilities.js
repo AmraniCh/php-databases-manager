@@ -45,10 +45,6 @@ function dataTableColumns(array)
         cols.push(c);
     });
 
-    var c = new Object();
-    c['data'] = 'edit';
-    cols.push(c);
-
     return cols;
 }
 
@@ -68,8 +64,8 @@ function addControlButtons (data)
             newRow [element] = data[i][element];
         });
 
-        newRow['edit'] = "<button>Edit</button>";
-        newRow['delete'] = "<button>Edit</button>";
+        newRow['edit'] = `<button id="modal-edit-btn" type="button" class="btn btn-fill green">Edit</button>`;
+        newRow['delete'] = `<button id="modal-delete-btn" type="button" class="btn btn-fill red">Delete</button>`;
 
         newData.push (newRow);
     }

@@ -234,7 +234,7 @@
 .section-container .dt-container{ overflow: auto }
 
 /* MODAL EDIT */
-.modal-edit-overlay.active{
+.modal-edit-overlay{
   position: absolute;
   top: 0;
   left: 0;
@@ -257,7 +257,7 @@
 
 .modal-edit-overlay.active .modal-edit{ display: block }
 
-.modal-edit .modal-section{ overflow-y: auto; height: 100%; padding: 12px }
+.modal-edit .modal-section{ overflow-y: auto; height: 100%; padding: 15px }
 
 .modal-edit .modal-footer{
   position: absolute;

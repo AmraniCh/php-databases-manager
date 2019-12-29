@@ -8,6 +8,8 @@ var content_view = 1; // 1 = Tabs View & 2 = Vertical View
 var tableName = null;
 var tableRowsCount = 0;
 
+var tableColumns = null, updateData = [], selectedDB = null, selectedTable = null;
+
 $(document).ready(function(){
 
   // CONNECTION TO DATABASE BUTTON CLICK
@@ -20,7 +22,6 @@ $(document).ready(function(){
             $("#ajx-page").empty().html(data).hide().fadeIn("500")
           }, function(){
             SidebarLoader("show")
-            tableEdit_Initialize()
           })
         }
         else{
@@ -47,13 +48,16 @@ $(document).ready(function(){
 
   // TABLE ITEM CLICK
   $(document).on("click", ".table-item", function(){
+    const $this = $(this);
+
+    // reset edit modal data
+    updateData = [];
+    selectedTable =  $this.data("table");
 
     $(".table-item").each(function(){ $(this).removeClass("selected") })
     $(this).closest(".table-item").addClass("selected")
 
-    const $this = $(this);
-
-    // GET TABLE DATA & STRUCTURE
+    // GET TABLE DATA & STRUCTURE VIEW
     ajax( "views/tableDataTabsView.php", "GET", 'database='+$(this).data("db")+"&table="+$(this).data("table"), "HTML", function(data){
         $("#ajx-content").empty().html(data)
         tableName = $this.data("table")
@@ -104,10 +108,13 @@ $(document).ready(function(){
   $(document).on("click", ".database-item", function () {
     const $this = $(this);
 
+    // reset edit modal data
+    updateData = [];
+
     if( $this.attr("data-toggle") == "close" ){
 
       // Retrieve clicked database
-      const databaseName = $(this).data("db");
+      const databaseName = selectedDB = $(this).data("db");
 
       const $this = $(this);
 
@@ -184,6 +191,62 @@ $(document).ready(function(){
     })
   });
 
+  // DATATABLE(DATA) EDIT BUTTON CLICK
+  $(document).on("click", "#modal-edit-btn", function(){
+    $(".modal-edit-overlay").show();
+    $(".modal-edit").hide().fadeIn();
+
+    var tds = $(this).closest("tr").children("td");
+    var rowData = [];
+
+    $.each(tds, function(){ rowData.push($(this).data("value")) });
+
+    rowData.splice(rowData.length - 2, rowData.length); // remove button delete & edit
+
+    var primaryKey = new Object(); // primary key => last item
+    $.each(rowData, function(index){
+      if( index == 0 ) {
+        primaryKey[tableColumns[index].name] = rowData[index];
+      }else{
+        var o = new Object();
+        o[tableColumns[index].name] = rowData[index];
+        updateData.push(o);
+      }
+    });
+
+    var o = new Object();
+    o['database'] = selectedDB;
+    updateData.push(o);
+
+    o = new Object();
+    o['table'] = selectedTable;
+    updateData.push(o);
+
+    o = new Object();
+    o['type'] = "update";
+    updateData.push(o);
+    
+    updateData.push(primaryKey);
+    console.log(updateData);
+
+    $(".modal-section").html("");
+
+    $.each(tableColumns, function(index){
+      $(".modal-section").append(`<div class="input-group">
+        <label for="">${tableColumns[index].name}</label>
+        <input type="text" class="input" id="username" placeholder="" value="${rowData[index]}">
+      </div>`);
+    });
+
+  })
+
+  // MODAL SAVE BUTTON
+  $(document).on("click", "#save-btn", function(){
+
+    console.log();
+
+  })
+
 });
 
 // DATABALE INITIALIZE (Data)
@@ -208,15 +271,24 @@ function tableData_Initialize(){
     success: function(json){
       StraightLoader("hide")
 
-      var cols = columns (json.rows);
+      tableColumns = json.columns;
+
+      var cols = columns (addControlButtons (json.rows));
 
       $("#table-data thead").children ().empty ();
       cols.forEach (e => $("#table-data thead").append ("<th>" + e + "</th>"));
 
       $("#table-data").DataTable ({
           destroy: false,
-          data: json.rows,
-          columns: dataTableColumns (cols)
+          data: addControlButtons (json.rows),
+          columns: dataTableColumns (cols),
+          createdRow: function (row, data, index){
+            var tds = $(row).children("td");
+            for( var i = 0; i < tds.length; i++ ){
+              tds[i].setAttribute("data-column", cols[i]);
+              tds[i].setAttribute("data-value", data[cols[i]]);
+            }
+          }
       });
 
     }
@@ -258,13 +330,6 @@ function tableStructure_Initialize(){
       });
     }
   });
-
-}
-
-// DATATABLE INITIALIZE (EDIT MODAL)
-function tableEdit_Initialize(){
-
-  //$("#table-edit").Datatable();
 
 }
 

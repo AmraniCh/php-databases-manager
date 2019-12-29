@@ -79,7 +79,6 @@ $(document).ready(function(){
 
   })
 
-
   // TOGGLE PANEL BUTTON
   $(document).on("click", "#toggle-logs-btn", function(){
 

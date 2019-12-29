@@ -71,7 +71,8 @@ p{ margin: 0 }
   padding: 7px 0;
   text-indent: 10px;
   font-size: 1.3em;
-  outline: 0 !important
+  outline: 0 !important;
+  border-radius: 2px
 }
 
 .select{
