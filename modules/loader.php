@@ -1,9 +1,6 @@
 <?php
 
-/**
- * getcwd: gets the directory of the current executing file
- */
-$root = getcwd();
+$root = $_SERVER["DOCUMENT_ROOT"] . "/DatabasesManager";
 
 $host = "localhost";
 $user = "root";
@@ -19,7 +16,7 @@ function load ($directoryPath)
 			include_once "$directoryPath/$item";
 }
 
-load ($root . "/utilities");
-load ($root . "/models");
+load ("$root/modules/utilities");
+load ("$root/modules/models");
 
 $manager = new Manager ($host, $user, $pass);
