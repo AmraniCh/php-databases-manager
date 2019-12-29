@@ -1,6 +1,9 @@
 <?php
 
-$root = $_SERVER["DOCUMENT_ROOT"] . "/DatabaseManagerAPI";
+/**
+ * getcwd: gets the directory of the current executing file
+ */
+$root = getcwd();
 
 $host = "localhost";
 $user = "root";
@@ -16,7 +19,7 @@ function load ($directoryPath)
 			include_once "$directoryPath/$item";
 }
 
-load ($root . "/modules/utilities");
-load ($root . "/modules/models");
+load ($root . "/utilities");
+load ($root . "/models");
 
 $manager = new Manager ($host, $user, $pass);
