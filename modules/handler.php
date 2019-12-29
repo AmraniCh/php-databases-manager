@@ -60,6 +60,10 @@ try
 
             $manager->getTable ($_POST["database"], $_POST ["table"])->update ([$idKey => $_POST[$idKey]], $_POST);
         break;
+            
+        case "users":
+            echo json_encode (UserManager::getUserNames ($manager->connection));
+        break;
     }
 
 }
