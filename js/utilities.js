@@ -51,3 +51,28 @@ function dataTableColumns(array)
 
     return cols;
 }
+
+/**
+ * Return the data + edit & remove buttons
+ */
+function addControlButtons (data)
+{
+    var newData = [];
+    var cols = columns (data);
+
+    for (var i=0; i<data.length; i++)
+    {
+        var newRow = new Object ();
+
+        cols.forEach (element => {
+            newRow [element] = data[i][element];
+        });
+
+        newRow['edit'] = "<button>Edit</button>";
+        newRow['delete'] = "<button>Edit</button>";
+
+        newData.push (newRow);
+    }
+
+    return newData;
+}
