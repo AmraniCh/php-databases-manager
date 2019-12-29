@@ -48,7 +48,7 @@ $(document).ready(function(){
     $.each($(".user-item"), function(){
       $(this).removeClass("selected")
     })
-    $this.closest(".user-item").addClass("selected")
+    $(this).closest(".user-item").addClass("selected")
   });
 
   // SIDEBAR PANEL FILTER PANEL TOGGLE DATABASES

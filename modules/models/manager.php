@@ -20,7 +20,7 @@ class Manager implements Container
     public function connect ($host, $user, $pass)
     {
         $this->connection = new mysqli($host, $user, $pass);
-    } 
+    }
 
     /**
      * Load all databases names
@@ -28,7 +28,7 @@ class Manager implements Container
     public function getDatabaseNames ()
     {
         $set = $this->connection->query ('SHOW DATABASES;');
-        
+
         $names = [];
 
         // Except already existed databases
@@ -78,7 +78,7 @@ class Manager implements Container
     {
         $this->databases[] = $item;
     }
-    
+
     public function remove ($item)
     {}
 

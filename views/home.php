@@ -16,7 +16,7 @@
           <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
         </button>
       </li>
-      <li>Databases (10)</li>
+      <li>Databases (<span id="db-count"></span>)</li>
     </ul>
     <button id="filter-button" type="button" class="btn float-rt focus">
       <i class="icon-big mdi mdi-filter"></i>
