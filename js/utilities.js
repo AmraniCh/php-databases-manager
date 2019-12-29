@@ -45,5 +45,9 @@ function dataTableColumns(array)
         cols.push(c);
     });
 
+    var c = new Object();
+    c['data'] = 'edit';
+    cols.push(c);
+
     return cols;
 }

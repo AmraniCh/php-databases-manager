@@ -6,6 +6,7 @@
   width: 100%;
   height: 12px;
   background-color: var(--green);
+  z-index: 9999
 }
 
 .loader-straight .loader-content{

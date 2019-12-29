@@ -50,6 +50,7 @@
 
 <!-- START FULL CONTAINER -->
 <div class="full-container">
+
   <div class="loader-straight hide">
     <div class="loader-content">
     </div>
