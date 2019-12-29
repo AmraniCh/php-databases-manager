@@ -31,7 +31,7 @@ try
             echo json_encode ($manager->fetchDatabasesJSON());
             break;
 
-        case "tables":
+        case "tables":  
             echo json_encode ($manager->getDatabase ($_POST["database"])->fetchTablesJSON ());
             break;
 

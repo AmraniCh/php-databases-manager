@@ -149,7 +149,9 @@ $(document).ready(function(){
 
       $("#ajx-permissions").html(data)
 
-      ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (json) {
+      ajax("modules/handler.php", "post", { type: "users" }, "JSON", function (json) {
+
+        console.log(json);
 
         $.each(json, function(index, element){
           const dbName = json[index].name;
@@ -277,7 +279,7 @@ function getAllDatabasesNames(){
 
       const dbName = json[index].name;
       const dbCount = json[index].count;
-      
+
       $(".sidebar-databases-items").append(`<div class="database-toggle">
         <div class="database-item panel-item blue" data-toggle="close" data-db="${dbName}">
           <ul class="list-unstyled list-inline float-lt">
