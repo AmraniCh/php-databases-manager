@@ -9,7 +9,7 @@
   secondary colors [#F0F0F0]
 **********************************************/
 
-:root{ --black: #222222; --blue: #2196F3; --green: #42B25C; --gray: #F0F0F0; --light-blue: #286AA7; --text: #555555 }
+:root{ --black: #222222; --blue: #2196F3; --green: #42B25C; --gray: #F0F0F0; --light-blue: #286AA7; --text: #555555; --red: #FE1C1C }
 
 *{ box-sizing: border-box }
 
@@ -37,6 +37,7 @@ body{ font-family: "Montserrat", "arial", "sans serif"; font-size: .85rem; line-
 .black { background-color: var(--black) }
 .light-blue{ background-color: var(--light-blue) }
 .text-color { color: var(--text) }
+.red{ background-color: var(--red) }
 
 .icon-big{ font-size: 1.5em }
 .panel-item{ color: #FFF; padding: 10px 8px; cursor: pointer }

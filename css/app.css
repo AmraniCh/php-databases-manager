@@ -142,8 +142,7 @@
   background-color: #FFF;
   height: calc(100vh - 50px);
   color: #222;
-  overflow-y: auto;
-  overflow-x: hidden
+  overflow: auto
 }
 
 .sidebar .filter-panel[data-toggle='open'] button[data-value='open']{ display: inline-block }
@@ -161,6 +160,35 @@
 .sidebar .database-table-items .table-item ul{ margin-left: 12px }
 
 .sidebar .user-item.selected{ background-color: var(--black) }
+
+.sidebar .toggle-logs-section{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 19%;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  background-color: #FFF
+}
+
+.sidebar .toggle-logs-section button{
+  background-color: var(--green);
+  padding: 6px 0;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 1em;
+  border-radius: 2px;
+  text-transform: capitalize;
+  width: 100%
+}
+
+.sidebar .toggle-logs-section button .mdi{ vertical-align: sub; margin-left: 10px}
+
+.sidebar .sidebar-databases-items{ height: 75%; overflow: auto }
+
+#toggle-logs-btn[data-toggle='close'] .mdi.close{ display: inline-block }
+#toggle-logs-btn[data-toggle='open'] .mdi.open{ display: inline-block }
+
 
 /* START SECTION */
 
@@ -186,7 +214,8 @@
   overflow-x: hidden;
   overflow-y: auto;
   border: 1px solid #e2e2e2;
-  width: 100%
+  width: 100%;
+  z-index: 1 /* logs panel */
 }
 
 .section-container .section-header{padding: 10px 5px}
@@ -201,6 +230,23 @@
   padding-top: calc((100vh - 260px) / 2)
 }
 
+.section-header .actions .add-user-btn{
+  background-color: var(--green);
+  padding: 8px 20px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 2px;
+  margin-right: 20px
+}
+
+.section-header .actions .delete-user-btn{
+  background-color: var(--blue);
+  padding: 8px 20px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 2px
+}
+
  /* START FOOTER */
  .footer{
    position: absolute;
@@ -213,7 +259,8 @@
    height: 35px;
    user-select: none;
    display: table;
-   text-align: right
+   text-align: right;
+   z-index: 1 /* LOGS PANEL */
  }
 
 .footer .copyrights{ display: table-cell; vertical-align: middle }
@@ -276,4 +323,77 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
   background-color: #FFF;
   transform: skewY(-1.8deg);
   height: 90vh
+}
+
+/* LOGS PANEL */
+.logs-panel{
+  position: absolute;
+  bottom: 0; left: 0;
+  z-index: 99; /* FOOTER & SECTION-CONTENT */
+  width: 100%;
+  background-color: #FFF;
+  height: 30vh
+}
+
+.logs-panel .panel-header{
+  background-color: #EEE;
+  padding: 0 20px;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  font-size: 1.1em;
+  height: 40px;
+  line-height: 32px
+}
+
+.logs-panel .panel-header .mdi{ color: #6C6C6C }
+.logs-panel .panel-header .info{ font-weight: 600 }
+.logs-panel .panel-header .logs-count{ font-weight: 400; font-size: .9em; margin-left: 6px }
+
+.logs-panel .panel-actions .mdi:first-of-type{ margin-right: 7px }
+
+.logs-panel .panel-content{
+  padding: 14px;
+  height: 22vh;
+  overflow: auto
+}
+
+.logs-panel .panel-content .log-item[data-type='delete'] .badge{
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  vertical-align: middle;
+  background-color: var(--red)
+}
+
+.logs-panel .panel-content .log-item[data-type='update'] .badge{
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  vertical-align: middle;
+  background-color: var(--green)
+}
+
+.logs-panel .panel-content .log-item[data-type='insert'] .badge{
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  vertical-align: middle;
+  background-color: var(--blue)
+}
+
+.logs-panel .panel-content .log-item .log-item-content{
+  display: inline-block;
+  background-color: #E2E2E2;
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+  margin-left: 12px;
+
 }

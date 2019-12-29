@@ -24,6 +24,11 @@
 
   </div>
   <!-- END SIDEBAR ITEMS -->
+
+  <!-- SIDEBAR LOADER -->
+  <div class="loader-sidebar hide"></div>
+  <!-- SIDEBAR LOADER -->
+  
 </div>
 <!-- END SIDEBAR -->
 
@@ -40,7 +45,9 @@
     <!-- START SECTION CONTAINER -->
       <div id="ajx-content" class="section-container text-color">
 
-        <h1 class="no-selected text-center">no user selected</h1>
+        <!-- <h1 class="no-selected text-center">no user selected</h1> -->
+
+        <?php include "componenets/sectionHeader_permissions.html"; ?>
 
       </div>
     <!-- END SECTION CONTAINER -->

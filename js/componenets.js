@@ -77,4 +77,19 @@ $(document).ready(function(){
 
   })
 
+
+  // TOGGLE PANEL BUTTON
+  $(document).on("click", "#toggle-logs-btn", function(){
+
+    const $this = $(this);
+
+    if( $this.attr("data-toggle") == "close" ){
+      $(".logs-panel").slideToggle()
+      $this.attr("data-toggle", "open")
+    } else{
+      $(".logs-panel").slideToggle()
+      $this.attr("data-toggle", "close")
+    }
+  })
+
 })
