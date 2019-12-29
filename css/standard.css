@@ -81,11 +81,11 @@ p{ margin: 0 }
   border: 2px solid #ddd;
 }
 
-.green-btn{
-  background-color: var(--green);
-  padding: 12px 18px;
-  color: #FFF;
-  font-weight: 500
+.btn-fill{
+  padding: 8px 20px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 2px;
 }
 
 /* TABLE ACTIONS BTNS */

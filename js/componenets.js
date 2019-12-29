@@ -10,10 +10,12 @@ $(document).ready(function(){
     if($this.data("type") == "data"){
       $("#table-structure_wrapper").hide(0)
       $("#table-data_wrapper").show(0)
+      $this.closest(".table-actions, .dt-container").attr("data-toggle", "data")
     }
     if($this.data("type") == "structure"){
       $("#table-data_wrapper").hide(0)
       $("#table-structure_wrapper").show(0)
+      $this.closest(".table-actions, .dt-container").attr("data-toggle", "structure")
     }
   })
 
@@ -90,6 +92,11 @@ $(document).ready(function(){
       $(".logs-panel").slideToggle()
       $this.attr("data-toggle", "close")
     }
+  })
+
+  // CANCEL EDIT MODAL
+  $(document).on("click", "#cancel-edit", function(){
+    $(".modal-edit-overlay").hide()
   })
 
 })

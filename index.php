@@ -52,7 +52,7 @@
               </select>
             </div>
             <div class="input-group text-center">
-              <button id="connection-btn" type="button" class="btn green-btn">
+              <button id="connection-btn" type="button" class="btn btn-fill green">
                 Connection
               </button>
             </div>

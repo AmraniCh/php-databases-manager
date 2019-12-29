@@ -40,8 +40,8 @@
   <div class="toggle-logs-section text-center">
     <button id="toggle-logs-btn" type="button" class="btn" data-toggle="close">
       <span>show logs</span>
-      <i class="icon-big mdi mdi-arrow-up-drop-circle open hide"></i>
-      <i class="icon-big mdi mdi-arrow-down-drop-circle close hide"></i>
+      <i class="icon-big mdi mdi-arrow-down-drop-circle open hide"></i>
+      <i class="icon-big mdi mdi-arrow-up-drop-circle close hide"></i>
     </button>
   </div>
   <!-- TOGGLE LOGS PANEL BTN -->
@@ -65,6 +65,8 @@
 
       </div>
     <!-- END SECTION CONTAINER -->
+
+    <?php include "componenets/tableEdit.html" ?>
 
   </div>
   <!-- END INNER CONTAINER -->

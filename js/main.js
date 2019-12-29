@@ -20,6 +20,7 @@ $(document).ready(function(){
             $("#ajx-page").empty().html(data).hide().fadeIn("500")
           }, function(){
             SidebarLoader("show")
+            tableEdit_Initialize()
           })
         }
         else{
@@ -31,7 +32,7 @@ $(document).ready(function(){
         }
       }, function(){
         RoundedLoader("hide")
-        getAllDatabasesNames();
+        getAllDatabasesNames()
       }, function(){
         RoundedLoader("show", "connection to database...")
         $(".login-container").css({
@@ -215,7 +216,9 @@ function tableData_Initialize(){
       $("#table-data").DataTable ({
           destroy: false,
           data: json.rows,
-          columns: dataTableColumns (cols)
+          columns: dataTableColumns (cols),
+          responsive: true
+
       });
 
     }
@@ -257,6 +260,13 @@ function tableStructure_Initialize(){
       });
     }
   });
+
+}
+
+// DATATABLE INITIALIZE (EDIT MODAL)
+function tableEdit_Initialize(){
+
+  //$("#table-edit").Datatable();
 
 }
 
