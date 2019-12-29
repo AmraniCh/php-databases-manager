@@ -4,28 +4,22 @@
 // CONTENT VIEW TYPE
 var content_view = 1; // 1 = Tabs View & 2 = Vertical View
 
+// Store Communs Data Between Views
+var tableName = null;
+var tableRowsCount = 0;
+
 $(document).ready(function(){
 
   // CONNECTION TO DATABASE BUTTON CLICK
   $(document).on("click", "#connection-btn", function(){
 
     // CONNECTION TO DATABASE REQUEST
-    ajax(
-      "modules/handler.php",
-      "POST",
-      {
-        type: "signIn",
-        user: $("#username").val(),
-        pass: $("#pass").val()
-      },
-      "JSON",
-      function(data){
+    ajax( "modules/handler.php", "POST", { type: "signIn", user: $("#username").val(), pass: $("#pass").val() }, "JSON", function(data){
         if( data == true ){
-          $.post("views/home.php", function(data){
+          ajax("views/home.php", "GET", null, "HTML", function(data){
             $("#ajx-page").empty().html(data).hide().fadeIn("500")
-            // NO SELECTED HEADING ADJUST HEIGHT
-            const contentHeight = $(".section-container").height() / 2
-            $(".no-selected").css("padding-top", contentHeight - 50)
+          }, function(){
+            SidebarLoader("show")
           })
         }
         else{
@@ -35,12 +29,10 @@ $(document).ready(function(){
           })
           $(".login-container input, .login-container select").css("pointer-events", "initial")
         }
-      },
-      function(){
+      }, function(){
         RoundedLoader("hide")
-        getAllDatabasesNames()
-      },
-      function(){
+        getAllDatabasesNames();
+      }, function(){
         RoundedLoader("show", "connection to database...")
         $(".login-container").css({
           "user-select": "none",
@@ -59,13 +51,11 @@ $(document).ready(function(){
     $(this).closest(".table-item").addClass("selected")
 
     const $this = $(this);
-    var tableName = null;
-    var tableRowsCount = 0;
 
     // GET TABLE DATA & STRUCTURE
     ajax( "views/tableDataTabsView.php", "GET", 'database='+$(this).data("db")+"&table="+$(this).data("table"), "HTML", function(data){
         $("#ajx-content").empty().html(data)
-        tableName = $this.data("db")
+        tableName = $this.data("table")
         tableRowsCount = $this.find(".table-count").text()
         tableData_Initialize()
         tableStructure_Initialize()
@@ -90,59 +80,101 @@ $(document).ready(function(){
           $("#ajx-content").html(data).hide().fadeIn(600)
           tableData_Initialize()
           tableStructure_Initialize()
+        }, function(){
+          $("#table-name").text(tableName)
+          $("#table-rows").text(tableRowsCount)
         }
       )
     }else{
       content_view = 1
-      ajax(
-        "views/tableDataTabsView.php",
-        "GET",
-        null,
-        "HTML",
-        function(data){
+      ajax( "views/tableDataTabsView.php", "GET", null, "HTML", function(data){
           $("#ajx-content").html(data).hide().fadeIn(600)
           tableData_Initialize()
           tableStructure_Initialize()
+        }, function(){
+          $("#table-name").text(tableName)
+          $("#table-rows").text(tableRowsCount)
         }
       )
     }
-
   });
 
   // DATABASE ITEM CLICK
   $(document).on("click", ".database-item", function () {
-    // Retrieve clicked database
-    const databaseName = $(this).data("db");
-
     const $this = $(this);
 
-    ajax ("modules/handler.php", "POST", {type:'tables', database: databaseName}, "JSON", function (json){
+    if( $this.attr("data-toggle") == "close" ){
 
-      $.each(json, function(index){
+      // Retrieve clicked database
+      const databaseName = $(this).data("db");
 
-        $this.closest(".database-toggle").children(".database-table-items").append(`<div class="table-item panel-item light-blue" data-table="${json[index].name}" data-db="${databaseName}">
-            <ul class="list-unstyled list-inline float-lt">
-              <li>
-                <button type="button" class="btn">
-                  <i class="icon-big mdi mdi-table"></i>
-                </button>
-              </li>
-              <li>${json[index].name} (<span class="table-count">${json[index].count}</span>)</li>
-            </ul>
-            <div class="table-size float-rt">${json[index].size} KIB</div>
-            <div class="clearfix"></div>
-          </div>`);
-      })
+      const $this = $(this);
 
-    });
+      ajax ("modules/handler.php", "POST", {type:'tables', database: databaseName}, "JSON", function (json){
 
+        $this.closest(".database-toggle").children(".database-table-items").html("")
 
+        $.each(json, function(index){
+
+          $this.closest(".database-toggle").children(".database-table-items").append(`<div class="table-item panel-item light-blue" data-table="${json[index].name}" data-db="${databaseName}">
+              <ul class="list-unstyled list-inline float-lt">
+                <li>
+                  <button type="button" class="btn">
+                    <i class="icon-big mdi mdi-table"></i>
+                  </button>
+                </li>
+                <li>${json[index].name} (<span class="table-count">${json[index].count}</span>)</li>
+              </ul>
+              <div class="table-size float-rt">${json[index].size} KIB</div>
+              <div class="clearfix"></div>
+            </div>`);
+        })
+
+      }, function(){
+        $(".loader-table").hide()
+      }, function(){
+        $this.closest(".database-toggle").children(".database-table-items").html(`<div class="loader-table hide"></div>`);
+        $(".loader-table").show()
+      });
+
+    }
 
   })
 
   // PERSMISSIONS PAGE MENU BUTTON CLICK
   $(document).on("click", "#permissions-page", function(){
 
+    ajax("views/permissions.php", "GET", null, "HTML", function(data){
+
+      $("#ajx-permissions").html(data)
+
+      ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (json) {
+
+        $.each(json, function(index, element){
+          const dbName = json[index].name;
+          const dbCount = json[index].count;
+          $(".sidebar-databases-items").append(`<div class="database-toggle">
+            <div class="user-item panel-item blue" data-toggle="close" data-user="${dbName}">
+              <ul class="list-unstyled list-inline float-lt">
+                <li>
+                  <button type="button" class="btn">
+                    <i class="icon-big mdi mdi-account"></i>
+                  </button>
+                </li>
+                <li>${dbName}</li>
+              </ul>
+              <button type="button" class="btn float-rt hide" data-value="close">
+                <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
+              </button>
+              <button type="button" class="btn float-rt hide" data-value="open">
+                <i class="icon-big mdi mdi-arrow-up-drop-circle"></i>
+              </button>
+              <div class="clearfix"></div>
+            </div>
+            </div>`);
+        })
+      });
+    })
   });
 
 });
@@ -173,6 +205,16 @@ function RoundedLoader(action, text){
   }
   if(action === "hide")
     $(".loader-rounded").hide()
+}
+
+// SIDEBAR LOADER
+function SidebarLoader(action){
+  if( action == "show" ){
+    $(".loader-sidebar").show()
+  }
+  if( action == "hide" ){
+    $(".loader-sidebar").hide()
+  }
 }
 
 // DATABALE INITIALIZE (Data)
@@ -279,8 +321,10 @@ function getAllDatabasesNames(){
         <div class="database-table-items hide">
         </div>
         </div>`);
-    })
+    });
 
+  }, function(){
+    SidebarLoader("hide")
   });
 
 }

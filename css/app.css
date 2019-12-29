@@ -37,6 +37,8 @@
   border-left-color: var(--blue)
 }
 
+.header a:hover{ color: #FFF }
+
 .header .header-items .header-menu{ user-select: none }
 
 .header .header-items .header-menu li{ margin-left: 15px; float: left }
@@ -95,7 +97,7 @@
   left: 58px
 }
 
-.header .header-items .header-menu .username{ line-height: 50px }
+.header .header-items .header-menu .username{ line-height: 50px; font-weight: 500; font-size: 1.2em }
 .header .header-items .header-menu .settings-btn{ line-height: 50px; height: 50px; padding: 0 10px }
 .header .header-items .header-menu .settings-btn i.mdi{ font-size: 24px }
 
@@ -109,11 +111,7 @@
   background-color: var(--blue);
   display: none;
   z-index: 999;
-<<<<<<< HEAD
   box-shadow: #555 -2px 3px 5px 0px
-=======
-    box-shadow: #555 -2px 3px 5px 0px
->>>>>>> b919d86c330da2c613ee983ef215e41d07ebc295
 }
 
 .header .header-items .header-menu li:last-of-type{ position: relative }
@@ -138,6 +136,7 @@
 
 /* STRAT SIDEBAR */
 .sidebar{
+  position: relative;
   float: left;
   width: 19%;
   background-color: #FFF;
@@ -154,11 +153,14 @@
 .sidebar .database-item[data-toggle='open'] button[data-value='open']{ display: inline-block }
 .sidebar .database-item[data-toggle='close'] button[data-value='close']{ display: inline-block }
 
-.sidebar .database-item{ position: relative; border-bottom: 3px solid var(--black) }
+.sidebar .database-item,
+.sidebar .user-item { position: relative; border-bottom: 3px solid var(--black) }
 
 .sidebar .database-table-items .table-size{ vertical-align: text-top }
 .sidebar .database-table-items .table-item.selected{ opacity: .8 }
 .sidebar .database-table-items .table-item ul{ margin-left: 12px }
+
+.sidebar .user-item.selected{ background-color: var(--black) }
 
 /* START SECTION */
 
@@ -195,7 +197,8 @@
 .section-container .no-selected{
   text-transform: capitalize;
   color: #8B8B8B;
-  font-size: 2.8em
+  font-size: 2.8em;
+  padding-top: calc((100vh - 260px) / 2)
 }
 
  /* START FOOTER */

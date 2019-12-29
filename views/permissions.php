@@ -1,8 +1,4 @@
-
-<?php include "componenets/header.php" ?>
-
 <!-- START SIDEBAR -->
-<div id="ajx-permissions">
 <div class="sidebar">
 
   <!-- FILTER PANEl -->
@@ -16,11 +12,8 @@
           <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
         </button>
       </li>
-      <li>Databases (10)</li>
+      <li>Users (5)</li>
     </ul>
-    <button id="filter-button" type="button" class="btn float-rt focus">
-      <i class="icon-big mdi mdi-filter"></i>
-    </button>
     <div class="clearfix"></div>
   </div>
   <!-- END FILTER PANEl -->
@@ -31,11 +24,6 @@
 
   </div>
   <!-- END SIDEBAR ITEMS -->
-
-  <!-- SIDEBAR LOADER -->
-  <div class="loader-sidebar hide"></div>
-  <!-- SIDEBAR LOADER -->
-
 </div>
 <!-- END SIDEBAR -->
 
@@ -52,7 +40,7 @@
     <!-- START SECTION CONTAINER -->
       <div id="ajx-content" class="section-container text-color">
 
-        <h1 class="no-selected text-center">no database table selected</h1>
+        <h1 class="no-selected text-center">no user selected</h1>
 
       </div>
     <!-- END SECTION CONTAINER -->
@@ -65,6 +53,5 @@
     <span class="copyrights">Databases Manager Copyrights 2020 <i class="mdi mdi-copyright"></i></span>
   </div>
   <!-- END FOOTER -->
-</div>
 </div>
 <!-- END FULL CONTAINER -->

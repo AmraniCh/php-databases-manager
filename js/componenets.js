@@ -38,8 +38,15 @@ $(document).ready(function(){
       $this.closest(".database-item").attr("data-toggle", "open")
       $this.closest(".database-item").css("border-bottom", "none")
       $this.closest(".database-toggle").find(".database-table-items").slideToggle(300)
-
     }
+  });
+
+  // SIDEBAR PANEL USER ITEM TOGGLE TABLES
+  $(document).on("click", ".user-item", function(){
+    $.each($(".user-item"), function(){
+      $(this).removeClass("selected")
+    })
+    $this.closest(".user-item").addClass("selected")
   });
 
   // SIDEBAR PANEL FILTER PANEL TOGGLE DATABASES
