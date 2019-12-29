@@ -151,11 +151,9 @@ $(document).ready(function(){
 
       ajax("modules/handler.php", "post", { type: "users" }, "JSON", function (json) {
 
-        console.log(json);
-
         $.each(json, function(index, element){
           const dbName = json[index].name;
-          const dbCount = json[index].count;
+          
           $(".sidebar-databases-items").append(`<div class="database-toggle">
             <div class="user-item panel-item blue" data-toggle="close" data-user="${dbName}">
               <ul class="list-unstyled list-inline float-lt">

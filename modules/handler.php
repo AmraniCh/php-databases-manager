@@ -31,7 +31,7 @@ try
             echo json_encode ($manager->fetchDatabasesJSON());
             break;
 
-        case "tables":  
+        case "tables":
             echo json_encode ($manager->getDatabase ($_POST["database"])->fetchTablesJSON ());
             break;
 
@@ -60,7 +60,7 @@ try
 
             $manager->getTable ($_POST["database"], $_POST ["table"])->update ([$idKey => $_POST[$idKey]], $_POST);
         break;
-            
+
         case "users":
             echo json_encode (UserManager::getUserNames ($manager->connection));
         break;
