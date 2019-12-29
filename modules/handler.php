@@ -61,6 +61,10 @@ try
             $manager->getTable ($_POST["database"], $_POST ["table"])->update ([$idKey => $_POST[$idKey]], $_POST);
         break;
 
+        /*
+        * Filtering Keys
+        * user, database, table, event, id, time
+        */
         case "logs":
             // Remove the type param from the filter options
             unset ($_POST["type"]);
