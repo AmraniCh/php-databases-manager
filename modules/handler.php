@@ -61,6 +61,17 @@ try
             $manager->getTable ($_POST["database"], $_POST ["table"])->update ([$idKey => $_POST[$idKey]], $_POST);
         break;
 
+        /*
+        * Filtering Keys
+        * user, database, table, event, id, time
+        */
+        case "logs":
+            // Remove the type param from the filter options
+            unset ($_POST["type"]);
+            
+            echo json_encode (LogsManager::filter ($_POST));
+        break;
+
         case "users":
             echo json_encode (UserManager::getUserNames ($manager->connection));
         break;
