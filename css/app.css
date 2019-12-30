@@ -120,9 +120,12 @@
   float: none;
   margin: 0;
   cursor: pointer;
-  padding: 8px;
   font-weight: 500;
   width: 100%;
+}
+
+.header .header-items .header-menu .settings-menu ul li button{
+  padding: 8px
 }
 
 .header .header-items .header-menu .settings-menu ul li:hover{
@@ -186,8 +189,8 @@
 
 .sidebar .sidebar-databases-items{ height: 75%; overflow: auto }
 
-#toggle-logs-btn[data-toggle='close'] .mdi.close{ display: inline-block }
-#toggle-logs-btn[data-toggle='open'] .mdi.open{ display: inline-block }
+.toggle-logs-btn[data-toggle='close'] .mdi.close{ display: inline-block }
+.toggle-logs-btn[data-toggle='open'] .mdi.open{ display: inline-block }
 
 
 /* START SECTION */
@@ -233,8 +236,13 @@
 
 .section-container .dt-container{ overflow: auto }
 
-/* MODAL EDIT */
-.modal-edit-overlay{
+.section-container .section-content .add-row-btn{
+  margin-top: 20px;
+  width: 170px;
+}
+
+/* MODAL EDIT & MODAL DELETE && MODAL ADD NEW ROW */
+.modal-edit-overlay, .modal-delete-overlay, .modal-add-overlay{
   position: absolute;
   top: 0;
   left: 0;
@@ -244,28 +252,65 @@
   background-color: rgba(0, 0, 0, .5)
 }
 
-.modal-edit{
+.modal-edit-insert{
   position: absolute;
-  top: 0; bottom: 0;
+  top: -20%; bottom: 0;
   left: 0; right: 0;
   width: 60%;
   height: 65vh;
   margin: auto;
   background-color: #FFF;
-  border-radius: 6px
+  border-radius: 6px 6px 0 0
 }
 
-.modal-edit-overlay.active .modal-edit{ display: block }
+.modal-edit-insert-overlay.active .modal-edit-insert{ display: block }
 
-.modal-edit .modal-section{ overflow-y: auto; height: 100%; padding: 15px }
+.modal-edit-insert .modal-section{ overflow-y: auto; height: 100%; padding: 15px }
 
-.modal-edit .modal-footer{
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.modal-edit-insert .modal-footer{
+  position: sticky;
   padding: 12px 16px;
   width: 100%;
   background-color: #eee;
+  border-radius: 0 0 6px 6px
+}
+
+.modal-delete{
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  width: 30%;
+  height: 25vh;
+  margin: auto;
+  background-color: #FFF;
+  border-radius: 6px;
+  padding: 10px
+}
+
+.modal-delete .modal-header{
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  font-size: 1.2em;
+  font-weight: 600
+}
+
+.modal-delete .modal-section{
+  padding-top: 12px;
+  font-size: 1.2em
+}
+
+.modal-action{
+  position: absolute;
+  bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.modal-action button{
+  margin: 0 15px
 }
 
  /* START FOOTER */
@@ -378,6 +423,11 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
   overflow: auto
 }
 
+.logs-panel .panel-content .log-item{
+  display: flex;
+  align-items: center
+}
+
 .logs-panel .panel-content .log-item[data-type='delete'] .badge{
   content: '';
   display: inline-block;
@@ -417,3 +467,11 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
   border-radius: 5px;
   margin-left: 12px
 }
+
+.logs-panel .no-table-selected{
+  width: 28%;
+  margin: auto;
+  padding-top: 7vh
+}
+
+.logs-panel.active .no-table-selected{ display: none }

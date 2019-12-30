@@ -19,11 +19,22 @@ function StraightLoader(action){
 // ROUNDED LOADER
 function RoundedLoader(action, text){
   if( action === "show" ){
+    $(".login-container").css({
+      "user-select": "none",
+      "opacity": ".4"
+    })
+    $(".login-container input, .login-container select").css("pointer-events", "none")
     $(".loader-rounded").show()
     $(".loader-rounded .loader-text").text(text)
   }
-  if(action === "hide")
+  if(action === "hide"){
     $(".loader-rounded").hide()
+    $(".login-container").css({
+      "user-select": "initial",
+      "opacity": "1"
+    })
+    $(".login-container input, .login-container select").css("pointer-events", "initial")
+  }
 }
 
 // SIDEBAR LOADER

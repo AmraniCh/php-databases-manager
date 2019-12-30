@@ -41,7 +41,7 @@ class UserManager
 
         return null;
     }
-    
+
     /**
      * Get user names
      */
@@ -102,5 +102,15 @@ class UserManager
     /**
      * Sign out
      */
-    public static function signOut () { session_destroy (); }
+    public static function signOut () {
+      session_start ();
+      unset($_SESSION['user']);
+      unset($_SESSION['pass']);
+    }
+
+    public static function checkIfConnected() : bool {
+      session_start ();
+      return ( isset($_SESSION["user"]) ) ? true : false;
+    }
+
 }

@@ -23,8 +23,12 @@ try
             echo json_encode (true);
             break;
 
-        case "signIn":
+        case "signOut":
             UserManager::signOut ();
+            break;
+
+        case "checkIfConnected":
+            echo json_encode (UserManager::checkIfConnected ());
             break;
 
         case "databases":
@@ -49,10 +53,13 @@ try
             // fetches the key of the element pointed to by the pointer
             $idKey = key($_POST);
 
-            $manager->getTable ($_POST["database"], $_POST ["table"])->remove ([$idKey => $_POST[$idKey]]);
+            echo json_encode($manager->getTable ($_POST["database"], $_POST ["table"])->remove ([$idKey => $_POST[$idKey]]));
         break;
 
         case "update":
+
+            //echo json_encode(end($_POST)); break; => test the end of array
+
             // move the pointer to the end of the array
             end($_POST);
             // fetches the key of the element pointed to by the pointer
@@ -68,7 +75,7 @@ try
         case "logs":
             // Remove the type param from the filter options
             unset ($_POST["type"]);
-            
+
             echo json_encode (LogsManager::filter ($_POST));
         break;
 

@@ -12,9 +12,14 @@
   <?php include "componenets/tableStructure.html" ?>
   </div>
 
-    <style>
-.dt-container[data-toggle='data'] #table-structure_wrapper{ display: none }
-    </style>
+  <style>
+    .dt-container[data-toggle='data'] #table-structure_wrapper{ display: none }
+  </style>
 
+
+  <button id="modal-add" type="button" class="btn add-row-btn btn-fill green">
+    <span>Add New Row</span>
+    <i class="mdi mdi-plus-box"></i>
+  </button>
 </div>
 <!-- END SECTION CONTENT -->

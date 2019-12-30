@@ -25,17 +25,17 @@ class Table implements Container
         $this->connection = $connection;
 
         $this->connection->select_db ($database);
-        
+
         // Setup
         $this->getColumns ();
         $this->getRows ();
         $this->getSize ();
     }
-    
+
     public function getColumns ()
     {
         $this->columns = [];
-        
+
         $result = QueryHelper::exec_query(
             QueryHelper::get_columns($this->name, $this->database),
             $this->connection
@@ -43,14 +43,14 @@ class Table implements Container
 
         foreach ($result as $row)
             $this->columns[] = new Column(
-                $row["COLUMN_NAME"], 
+                $row["COLUMN_NAME"],
                 $row["DATA_TYPE"],
                 strpos ($row["EXTRA"], "auto_increment") !== (!true)
             );
 
         return $this->columns;
     }
-    
+
     public function getRows ()
     {
         $this->rows = [];
@@ -89,7 +89,7 @@ class Table implements Container
     /**
      * For inserting data
      */
-    public function add ($array) 
+    public function add ($array)
     {
         $q = "INSERT INTO $this->name (";
 
@@ -99,14 +99,14 @@ class Table implements Container
         foreach ($array as $c => $v)
         {
             $column = $this->hasColumn ($c);
-            
+
             if (!$column)
                 continue;
-            
+
             if ($column->isAuto)
             {
                 $cols[] = $c;
-                $vals[] = "null";   
+                $vals[] = "null";
 
                 continue;
             }
@@ -138,7 +138,7 @@ class Table implements Container
         $this->getRows ();
     }
 
-    public function remove ($item) 
+    public function remove ($item)
     {
         $key = key($item);
 
@@ -146,15 +146,17 @@ class Table implements Container
 
         if (!$this->connection->query ($q))
             throw new Exception ("Suppression failed.");
-    
+
         // Logs altering
         $this->appendLogs("delete", $item[$key]);
 
         // Refresh array of data
         $this->getRows();
+
+        return true;
     }
 
-    public function update (array $id, array $data) 
+    public function update (array $id, array $data)
     {
         $q = "UPDATE $this->name SET ";
 
@@ -165,10 +167,10 @@ class Table implements Container
         foreach ($data as $c => $v)
         {
             $column = $this->hasColumn ($c);
-            
+
             if (!$column)
                 continue;
-            
+
             if (strcmp ($column->name, $idkey) == 0)
                 continue;
 
@@ -182,7 +184,7 @@ class Table implements Container
 
         if (!$this->connection->query ($q))
             throw new Exception ("Updating failed.");
-    
+
         // Logs altering
         $this->appendLogs("update", $id[$idkey]);
 
@@ -200,9 +202,8 @@ class Table implements Container
      */
     public function appendLogs($event, $rowId)
     {
-        if (!isset ($_SESSION["user"]))
-            return;
-
+        session_start ();
+        
         LogsManager::append ([
             "user" => $_SESSION["user"],
             "database" => $this->database,

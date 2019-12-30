@@ -3,7 +3,7 @@
 class LogsManager
 {
     public static $logs = array();
-    public static $path = "logs/logs.txt";
+    public static $path;
 
     public static function fixPath ()
     {
@@ -12,7 +12,7 @@ class LogsManager
 
     public static function read()
     {
-        self::fixPath (); 
+        self::fixPath ();
 
         $file = fopen(self::$path, "r");
 
@@ -24,15 +24,15 @@ class LogsManager
             if (strlen($row) > 0) {
                 $dataArray = explode(";", $row);
                 array_push(self::$logs, [
-                    "user" => $dataArray[0], 
-                    "database" => $dataArray[1], 
-                    "table" => $dataArray[2], 
-                    "event" => $dataArray[3], 
-                    "id" => $dataArray[4], 
+                    "user" => $dataArray[0],
+                    "database" => $dataArray[1],
+                    "table" => $dataArray[2],
+                    "event" => $dataArray[3],
+                    "id" => $dataArray[4],
                     "time" => $dataArray[5]
                 ]);
             }
-        } 
+        }
 
         fclose($file);
 
@@ -42,10 +42,10 @@ class LogsManager
     public static function filter($arr)
     {
         if (count (self::$logs) == 0)
-            self::read(); 
+            self::read();
 
         $filteredArray = array();
-        foreach (self::$logs as $logRow) 
+        foreach (self::$logs as $logRow)
         {
             $counter = 0;
             foreach ($arr as $filterColumn => $filterValue) {
@@ -65,7 +65,7 @@ class LogsManager
 
     public static function append($arr)
     {
-        self::fixPath (); 
+        self::fixPath ();
 
         $file = fopen(self::$path, "a+");
 
@@ -76,7 +76,7 @@ class LogsManager
 
     public static function clear()
     {
-        self::fixPath (); 
+        self::fixPath ();
 
         unlink(self::$path);
     }

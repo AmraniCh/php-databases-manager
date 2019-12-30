@@ -9,11 +9,11 @@ $(document).ready(function(){
     $this.toggleClass("active")
     if($this.data("type") == "data"){
       $("#table-structure_wrapper").hide(0)
-      $("#table-data_wrapper").show(0)
+      $("#table-data_wrapper, #table-data").show(0)
       $this.closest(".table-actions, .dt-container").attr("data-toggle", "data")
     }
     if($this.data("type") == "structure"){
-      $("#table-data_wrapper").hide(0)
+      $("#table-data_wrapper, #table-data").hide(0)
       $("#table-structure_wrapper").show(0)
       $this.closest(".table-actions, .dt-container").attr("data-toggle", "structure")
     }
@@ -69,19 +69,18 @@ $(document).ready(function(){
     const dataType = $this.data("type")
     const toggle = $this.attr("data-toggle")
     if( toggle == "open" ){
-      ( dataType == "data" ) ? $("#table-data_wrapper").hide(0) : $("#table-structure_wrapper").hide(0)
+      ( dataType == "data" ) ? $("#table-data_wrapper, #table-data").hide(0) : $("#table-structure_wrapper").hide(0)
       $this.attr("data-toggle", "close")
     }
     else{
-      ( dataType == "data" ) ? $("#table-data_wrapper").show(0) : $("#table-structure_wrapper").show(0)
+      ( dataType == "data" ) ? $("#table-data_wrapper, #table-data").show(0) : $("#table-structure_wrapper").show(0)
       $this.attr("data-toggle", "open")
     }
 
   })
 
   // TOGGLE PANEL BUTTON
-  $(document).on("click", "#toggle-logs-btn", function(){
-
+  $(document).on("click", ".toggle-logs-btn", function(){
     const $this = $(this);
 
     if( $this.attr("data-toggle") == "close" ){
@@ -93,9 +92,17 @@ $(document).ready(function(){
     }
   })
 
+  $(document).on("click", "#toggle-logs-btn-head", function(){
+    alert()
+  })
+
   // CANCEL EDIT MODAL
-  $(document).on("click", "#cancel-edit", function(){
-    $(".modal-edit-overlay").hide()
+  $(document).on("click", ".cancel", function(){
+    $(".modal-edit-overlay, .modal-add-overlay").hide()
+  })
+
+  $(document).on("click", "#close-modal-edit", function(){
+    $(".modal-delete-overlay").hide()
   })
 
 })

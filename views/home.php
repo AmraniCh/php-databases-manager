@@ -38,13 +38,14 @@
 
   <!-- TOGGLE LOGS PANEL BTN -->
   <div class="toggle-logs-section text-center">
-    <button id="toggle-logs-btn" type="button" class="btn" data-toggle="close">
+    <button type="button" class="btn toggle-logs-btn" data-toggle="close">
       <span>show logs</span>
       <i class="icon-big mdi mdi-arrow-down-drop-circle open hide"></i>
       <i class="icon-big mdi mdi-arrow-up-drop-circle close hide"></i>
     </button>
   </div>
   <!-- TOGGLE LOGS PANEL BTN -->
+
 </div>
 <!-- END SIDEBAR -->
 
@@ -68,52 +69,13 @@
     <!-- END SECTION CONTAINER -->
 
     <?php include "componenets/editModal.html" ?>
+    <?php include "componenets/deleteModal.html" ?>
+    <?php include "componenets/addModal.html" ?>
 
   </div>
   <!-- END INNER CONTAINER -->
 
-  <!-- START LOGS PANEL -->
-  <div class="logs-panel hide" data-toggle="close">
-    <div class="panel-header">
-      <div class="title float-lt">
-        <i class="mdi mdi-library-books"></i>
-        <span class="info text-color">Table Name Logs</span>
-        <span class="logs-count">2000 <span>Logs Founded</span></span>
-      </div>
-      <div class="panel-actions float-rt">
-        <i class="mdi btn icon-big mdi-arrow-expand"></i>
-        <i class="mdi btn icon-big mdi-arrow-down-box"></i>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="panel-content">
-      <div class="log-item" data-type="delete">
-        <span class="badge"></span>
-        <div class="log-item-content">
-          delete
-        </div>
-      </div>
-      <div class="log-item" data-type="update">
-        <span class="badge"></span>
-        <div class="log-item-content">
-          update
-        </div>
-      </div>
-      <div class="log-item" data-type="insert">
-        <span class="badge"></span>
-        <div class="log-item-content">
-          insert
-        </div>
-      </div>
-      <div class="log-item" data-type="delete">
-        <span class="badge"></span>
-        <div class="log-item-content">
-          delete
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- END LOGS PANEL -->
+  <?php include "componenets/logsPanel.html" ?>
 
   <!-- START FOOTER -->
   <div class="footer shadow-top">
