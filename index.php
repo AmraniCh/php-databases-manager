@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
-
+    <!-- Material Icons Library -->
+    <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css">
+    <!-- animation CSS -->
+    <link rel="stylesheet" href="css/animation.css">
+    <!-- Loaders CSS -->
+    <link rel="stylesheet" href="css/loaders.css">
+    <!-- Datatable style -->
+    <link rel="stylesheet" href="css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
-
-    <link rel="stylesheet" href="css/normalize.css/normalize.css">
-    <link rel="stylesheet" href="css/standard.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css">
-
-    <link rel="stylesheet" href="css/jquery.dataTables.css">
-
     <link rel="stylesheet" href="css/vendor.bundle.base.css">
     <link rel="stylesheet" href="css/vendor.bundle.addons.css">
-
-    <link rel="stylesheet" href="css/animation.css">
-    <link rel="stylesheet" href="css/loaders.css">
-
+    <!-- Normalize -->
+    <link rel="stylesheet" href="css/normalize.css/normalize.css">
+    <!-- Owns -->
+    <link rel="stylesheet" href="css/standard.css">
+    <link rel="stylesheet" href="css/app.css">
 
     <title>Databases Manager</title>
+
   </head>
   <body>
 

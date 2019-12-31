@@ -1,7 +1,7 @@
 /**
  * Responsible for ajax requests
  * Optionel Params [complete, beforeSend, async]
- * Required Params [url, method, data, success]
+ * Required Params [url, method, data, dataType, success]
  */
 function ajax (url, method, data, dataType, success, complete = null, beforeSend = null, async = null)
 {

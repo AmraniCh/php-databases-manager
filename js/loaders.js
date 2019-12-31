@@ -39,10 +39,6 @@ function RoundedLoader(action, text){
 
 // SIDEBAR LOADER
 function SidebarLoader(action){
-  if( action == "show" ){
-    $(".loader-sidebar").show()
-  }
-  if( action == "hide" ){
-    $(".loader-sidebar").hide()
-  }
+  if( action == "show" ) $(".loader-sidebar").show()
+  if( action == "hide" ) $(".loader-sidebar").hide()
 }

@@ -14,7 +14,6 @@
 .header .header-brand{
   height: 100%;
   padding-right: 10px;
-  width: 181px;
   font-size: 1.1em;
   text-transform: uppercase
 }
@@ -263,17 +262,8 @@
   border-radius: 6px 6px 0 0
 }
 
-.modal-edit-insert-overlay.active .modal-edit-insert{ display: block }
-
-.modal-edit-insert .modal-section{ overflow-y: auto; height: 100%; padding: 15px }
-
-.modal-edit-insert .modal-footer{
-  position: sticky;
-  padding: 12px 16px;
-  width: 100%;
-  background-color: #eee;
-  border-radius: 0 0 6px 6px
-}
+.modal-edit-insert .modal-section,
+.modal-edit-insert .modal-header { padding: 15px }
 
 .modal-delete{
   position: absolute;
@@ -287,30 +277,37 @@
   padding: 10px
 }
 
-.modal-delete .modal-header{
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-  font-size: 1.2em;
-  font-weight: 600
+.modal-delete .modal-section{
+  padding: 15px 0
 }
 
-.modal-delete .modal-section{
-  padding-top: 12px;
-  font-size: 1.2em
+.modal-edit-insert-overlay.active .modal-edit-insert{ display: block }
+
+.modal-edit-insert .modal-section{ overflow-y: auto; height: calc(100% - 58px) }
+
+.modal-edit-insert .modal-footer{
+  padding: 10px 16px;
+  background-color: #eee;
+  border-radius: 0 0 6px 6px;
+  height: 50px
 }
 
 .modal-action{
   position: absolute;
   bottom: 0;
-  padding-top: 10px;
-  padding-bottom: 15px;
+  padding: 15px;
   text-align: center;
   width: 100%;
-  margin: auto;
+  margin: auto
 }
 
-.modal-action button{
-  margin: 0 15px
+.modal-action button{ margin: 0 15px }
+
+.modal-header{
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  font-size: 1.2em;
+  font-weight: 600
 }
 
  /* START FOOTER */
@@ -337,43 +334,37 @@
 body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 
 .login-container{
-  height: 70vh;
   background-color: #FFF;
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 26%;
-  transform: translate(-50%, -50%)
+  width: 23%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px 1px #ddd;
+  border-radius: 5px
 }
 
 .login-container .form-header{
   background-color: var(--green);
   color: #FFF;
-  height: 15vh;
   display: table;
-  width: 100%
+  width: 100%;
+  padding: 30px 10px;
+  border-radius: 5px 5px 0 0
 }
 
 .login-container .form-header h2{
-  font-size: 1.7em;
+  font-size: 1.9em;
   text-transform: capitalize;
   display: table-cell;
   vertical-align: middle
 }
 
-.login-container .form-section{
-  border-bottom: 2px solid #EDEDED;
-  border-right: 2px solid #EDEDED;
-  border-left: 2px solid #EDEDED;
-  height: 55vh; /* 15 + 55 = 70 */
-  padding: 20px
-}
+.login-container .form-section{ padding: 20px 20px 0px 20px }
 
-.login-container .form-section .input-group:last-of-type{ }
+.login-container .form-section .connection{ margin: 20px 0 }
 
-.login-container .form-section button{
-  margin-top: 3%
-}
+.login-container .form-section .connection button{ padding: 12px; width: 100% }
 
 .shape-top{
   position: absolute;
@@ -402,14 +393,19 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 }
 
 .logs-panel .panel-header{
-  background-color: #EEE;
+  background-color: var(--light-blue);
   padding: 0 20px;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
   font-size: 1.1em;
   height: 40px;
-  line-height: 32px
+  border-radius: 5px 5px 0 0
 }
+
+.logs-panel .panel-header .title{ line-height: 35px }
+
+.logs-panel .panel-header .title .logs-icon{ font-size: 1.2em; margin-right: 8px}
+
+.logs-panel .panel-actions{ line-height: 40px }
+
 
 .logs-panel .panel-header .mdi{ color: #6C6C6C }
 .logs-panel .panel-header .info{ font-weight: 600 }
@@ -417,16 +413,9 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 
 .logs-panel .panel-actions .mdi:first-of-type{ margin-right: 7px }
 
-.logs-panel .panel-content{
-  padding: 14px;
-  height: 22vh;
-  overflow: auto
-}
+.logs-panel .panel-content{ padding: 14px; overflow: auto }
 
-.logs-panel .panel-content .log-item{
-  display: flex;
-  align-items: center
-}
+.logs-panel .panel-content .log-item{ display: flex; align-items: center }
 
 .logs-panel .panel-content .log-item[data-type='delete'] .badge{
   content: '';
@@ -469,9 +458,11 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 }
 
 .logs-panel .no-table-selected{
-  width: 28%;
+  width: 100%;
   margin: auto;
-  padding-top: 7vh
+  padding-top: 7vh;
+  display: block;
+  font-size: 1.5em
 }
 
 .logs-panel.active .no-table-selected{ display: none }
