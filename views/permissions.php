@@ -49,6 +49,8 @@
 
         <?php include "componenets/sectionHeader_permissions.html"; ?>
 
+        <?php include "componenets/datatables/tablePermissions.html" ?>
+
       </div>
     <!-- END SECTION CONTAINER -->
 

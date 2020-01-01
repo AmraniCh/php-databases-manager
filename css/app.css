@@ -1,14 +1,4 @@
-/* START HEADER
-  header
-    header-brand
-      heading
-    traingle-right
-    header-items
-      header-menu
-        cercle-badge
-        username
-        settings-btn
-*/
+/* START HEADER */
 .header{ height: 50px; color: #FFF }
 
 .header .header-brand{
@@ -466,3 +456,7 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 }
 
 .logs-panel.active .no-table-selected{ display: none }
+
+
+/* OTHERS */
+#table-permissions_wrapper{ margin-top: 30px }

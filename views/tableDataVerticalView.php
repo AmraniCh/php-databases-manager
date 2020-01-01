@@ -8,7 +8,7 @@
     <span>Data</span>
   </div>
 
-  <?php include "componenets/tableData.html" ?>
+  <?php include "componenets/datatables/tableData.html" ?>
 
   <div class="btn toggle-table-btn" data-type="structure" data-toggle="open">
     <i class="mdi mdi-arrow-up-drop-circle open hide"></i>
@@ -16,7 +16,7 @@
     <span>Structure</span>
   </div>
 
-  <?php include "componenets/tableStructure.html" ?>
+  <?php include "componenets/datatables/tableStructure.html" ?>
 
 </div>
 <!-- END SECTION CONTENT -->

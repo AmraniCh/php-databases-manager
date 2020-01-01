@@ -30,10 +30,10 @@ $(document).ready(function(){
           })
         }
       }, function(){
-        RoundedLoader("hide")
-        getAllDatabasesNames()
+        RoundedLoader("hide");
+        getAllDatabasesNames();
       }, function(){
-        RoundedLoader("show", "connection to MySQL...")
+        RoundedLoader("show", "connection to MySQL...");
       }
     )
 
@@ -177,7 +177,12 @@ $(document).ready(function(){
         SidebarLoader("show")
       });
 
-    })
+    }, function(){
+
+      tablePermissions_Initialize();
+
+    });
+
   });
 
   // Table => Edit Button click
@@ -395,6 +400,45 @@ $(document).ready(function(){
         });
       }
     });
+
+  }
+
+  // Datatable Initialize 
+  function tablePermissions_Initialize(){
+
+    // VARIABLES
+    const selectedUser = $(".user-item.selected").data("user");
+
+    /*
+    $.ajax ({
+      url: "modules/handler.php",
+      type: "POST",
+      data: {
+        type: "table",
+        table: tableName,
+        database: databaseName
+      },
+      dataType: "JSON",
+      beforeSend: function(){
+        StraightLoader("show")
+      },
+      success: function(json){
+        StraightLoader("hide")
+
+        var cols = columns (json.columns);
+
+        $("#table-structure thead").children ().empty ();
+        cols.forEach (e => $("#table-structure thead").append ("<th>" + e + "</th>"));
+
+        $("#table-structure").DataTable ({
+            destroy: false,
+            data: json.columns,
+            columns: dataTableColumns ( columns (json.columns) )
+        });
+      }
+    }); */
+
+    $('#table-permissions').DataTable();
 
   }
 

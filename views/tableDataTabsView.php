@@ -8,14 +8,9 @@
   </div>
 
   <div class="dt-container" data-toggle="data">
-  <?php include "componenets/tableData.html" ?>
-  <?php include "componenets/tableStructure.html" ?>
+    <?php include "componenets/datatables/tableData.html"; ?>
+    <?php include "componenets/datatables/tableStructure.html"; ?>
   </div>
-
-  <style>
-    .dt-container[data-toggle='data'] #table-structure_wrapper{ display: none }
-  </style>
-
 
   <button id="modal-add" type="button" class="btn add-row-btn btn-fill green">
     <span>Add New Row</span>
