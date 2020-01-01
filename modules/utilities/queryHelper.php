@@ -46,12 +46,12 @@ class QueryHelper
         return "REVOKE $privilege ON $database.$table FROM '$user'@'localhost'";
     }
 
-    public static function exec_query ($query, $connection)
+    public static function exec_query ($query, $connection, $mode = MYSQLI_ASSOC)
     {
         $data = [];
 
         $result = $connection->query($query);
-        while ($row = $result->fetch_assoc())
+        while ($row = ($mode == MYSQLI_ASSOC) ? $result->fetch_assoc() : $result->fetch_row() )
             array_push($data, $row);
             
         return $data;
