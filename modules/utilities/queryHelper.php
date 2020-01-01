@@ -51,7 +51,7 @@ class QueryHelper
         $data = [];
 
         $result = $connection->query($query);
-        while ($row = ($mode == MYSQLI_ASSOC) ? $result->fetch_assoc() : $result->fetch_row() )
+        while ($row = (($mode == MYSQLI_ASSOC) ? $result->fetch_assoc() : $result->fetch_row()))
             array_push($data, $row);
             
         return $data;
