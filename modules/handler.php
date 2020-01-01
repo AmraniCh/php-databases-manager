@@ -82,6 +82,22 @@ try
         case "users":
             echo json_encode (UserManager::getUserNames ($manager->connection));
         break;
+            
+        case "register":
+            UserManager::createUser ($_POST['user'], $_POST['pass'], $manager->connection);
+            break;
+            
+        case "kick":
+            UserManager::dropUser ($_POST['user'], $manager->connection);
+            break;
+            
+        case "grant":
+            echo json_encode (UserManager::grantPermission ($_POST['user'], $_POST['privilege'], '*', '*', $manager->connection));
+            break;
+            
+        case "revoke":
+            echo json_encode (UserManager::revokePermission ($_POST['user'], $_POST['privilege'], '*', '*', $manager->connection));
+            break;
     }
 
 }
