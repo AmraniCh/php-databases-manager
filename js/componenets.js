@@ -92,17 +92,19 @@ $(document).ready(function(){
     }
   })
 
-  $(document).on("click", "#toggle-logs-btn-head", function(){
-    alert()
-  })
-
   // CANCEL EDIT MODAL
   $(document).on("click", ".cancel", function(){
-    $(".modal-edit-overlay, .modal-add-overlay").hide()
+    $(".modal-edit-overlay, .modal-add-overlay, .modal-adduser-overlay, .modal-delete-overlay, .modal-deleteuser-overlay").hide()
   })
 
-  $(document).on("click", "#close-modal-edit", function(){
-    $(".modal-delete-overlay").hide()
-  })
+  // Add User Button
+  $(document).on("click", "#delete-user-modal", function(){
+    $(".modal-deleteuser-overlay").show();
+  });
+
+  // Delete User Button
+  $(document).on("click", "#add-user-modal", function(){
+    $(".modal-adduser-overlay").show();
+  });
 
 })

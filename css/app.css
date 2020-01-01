@@ -231,7 +231,7 @@
 }
 
 /* MODAL EDIT & MODAL DELETE && MODAL ADD NEW ROW */
-.modal-edit-overlay, .modal-delete-overlay, .modal-add-overlay{
+.modal-edit-overlay, .modal-delete-overlay, .modal-add-overlay, .modal-adduser-overlay, .modal-deleteuser-overlay{
   position: absolute;
   top: 0;
   left: 0;
@@ -318,6 +318,11 @@
 
 .footer .copyrights{ display: table-cell; vertical-align: middle }
 .footer .copyrights .mdi{ font-size: 22px; vertical-align: sub }
+
+.modal-adduser-overlay .modal-edit-insert{
+  width: 32%;
+  height: 38vh;
+}
 
 
 /* LOGIN CONTAINER */
@@ -460,3 +465,4 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 
 /* OTHERS */
 #table-permissions_wrapper{ margin-top: 30px }
+.dt-container[data-toggle='data'] #table-structure_wrapper{ display: none }

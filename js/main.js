@@ -1,100 +1,100 @@
 "use strict"
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-  checkIfConnected ();
+  checkIfConnected();
   //checkMysqlConnStatus ();
 
   // Global Variables
   var content_view = 1,
-      tableName,
-      tableRowsCount,
-      tableColumns,
-      selectedDB,
-      selectedTable,
-      pkSelectedRow,
-      username;
+    tableName,
+    tableRowsCount,
+    tableColumns,
+    selectedDB,
+    selectedTable,
+    pkSelectedRow,
+    username;
 
   // Connection To Database Button Click
-  $(document).on("click", "#connection-btn", function(){
+  $(document).on("click", "#connection-btn", function () {
 
     // CONNECTION TO DATABASE REQUEST
-    ajax( "modules/handler.php", "POST", { type: "signIn", user: $("#username").val(), pass: $("#pass").val() }, "JSON", function(data){
-        if( data == true ){
-          username = $("#username").val();
-          ajax("views/home.php", "GET", null, "HTML", function(data){
-            $("#ajx-page").empty().html(data).hide().fadeIn("500")
-          }, function(){
-            SidebarLoader("show")
-            panelLogsInit ();
-          })
-        }
-      }, function(){
-        RoundedLoader("hide");
-        getAllDatabasesNames();
-      }, function(){
-        RoundedLoader("show", "connection to MySQL...");
+    ajax("modules/handler.php", "POST", { type: "signIn", user: $("#username").val(), pass: $("#pass").val() }, "JSON", function (data) {
+      if (data == true) {
+        username = $("#username").val();
+        ajax("views/home.php", "GET", null, "HTML", function (data) {
+          $("#ajx-page").empty().html(data).hide().fadeIn("500")
+        }, function () {
+          SidebarLoader("show")
+          panelLogsInit();
+        })
       }
+    }, function () {
+      RoundedLoader("hide");
+      getAllDatabasesNames();
+    }, function () {
+      RoundedLoader("show", "connection to MySQL...");
+    }
     )
 
   });
 
   // Navigation Table Item CLick
-  $(document).on("click", ".table-item", function(){
+  $(document).on("click", ".table-item", function () {
     const $this = $(this);
 
-    closeAllModals ();
+    closeAllModals();
 
-    selectedTable =  $this.data("table");
+    selectedTable = $this.data("table");
 
-    $(".table-item").each(function(){ $(this).removeClass("selected") })
+    $(".table-item").each(function () { $(this).removeClass("selected") })
     $(this).closest(".table-item").addClass("selected")
 
     // GET TABLE DATA & STRUCTURE VIEW
-    ajax( "views/tableDataTabsView.php", "GET", 'database='+$(this).data("db")+"&table="+$(this).data("table"), "HTML", function(data){
-        $("#ajx-content").empty().html(data)
-        tableName = $this.data("table")
-        tableRowsCount = $this.find(".table-count").text()
-      }, function(){
-        $("#table-name").text(tableName)
-        $("#table-rows").text(tableRowsCount)
-        tableData_Initialize()
-        tableStructure_Initialize()
-        panelLogsInit ();
-      }
+    ajax("views/tableDataTabsView.php", "GET", 'database=' + $(this).data("db") + "&table=" + $(this).data("table"), "HTML", function (data) {
+      $("#ajx-content").empty().html(data)
+      tableName = $this.data("table")
+      tableRowsCount = $this.find(".table-count").text()
+    }, function () {
+      $("#table-name").text(tableName)
+      $("#table-rows").text(tableRowsCount)
+      tableData_Initialize()
+      tableStructure_Initialize()
+      panelLogsInit();
+    }
     );
 
   });
 
   // Change View Type Button
-  $(document).on("click", "#change-view-btn", function(){
+  $(document).on("click", "#change-view-btn", function () {
     const $this = $(this)
-    if( content_view === 1 ){
+    if (content_view === 1) {
       content_view = 2
       ajax(
         "views/tableDataVerticalView.php",
         "GET",
         null,
         "HTML",
-        function(data){
+        function (data) {
           $("#ajx-content").html(data).hide().fadeIn(600)
           tableData_Initialize()
           tableStructure_Initialize()
-        }, function(){
+        }, function () {
           $("#table-name").text(tableName)
           $("#table-rows").text(tableRowsCount)
         }
-      )
-    }else{
+      );
+    } else {
       content_view = 1
-      ajax( "views/tableDataTabsView.php", "GET", null, "HTML", function(data){
-          $("#ajx-content").html(data).hide().fadeIn(600)
-          tableData_Initialize()
-          tableStructure_Initialize()
-        }, function(){
-          $("#table-name").text(tableName)
-          $("#table-rows").text(tableRowsCount)
-        }
+      ajax("views/tableDataTabsView.php", "GET", null, "HTML", function (data) {
+        $("#ajx-content").html(data).hide().fadeIn(600)
+        tableData_Initialize()
+        tableStructure_Initialize()
+      }, function () {
+        $("#table-name").text(tableName)
+        $("#table-rows").text(tableRowsCount)
+      }
       )
     }
   });
@@ -103,15 +103,15 @@ $(document).ready(function(){
   $(document).on("click", ".database-item", function () {
     const $this = $(this);
 
-    if( $this.attr("data-toggle") == "close" ){
+    if ($this.attr("data-toggle") == "close") {
 
       selectedDB = $(this).data("db");
 
-      ajax ("modules/handler.php", "POST", {type:'tables', database: selectedDB}, "JSON", function (json){
+      ajax("modules/handler.php", "POST", { type: 'tables', database: selectedDB }, "JSON", function (json) {
 
         $this.closest(".database-toggle").children(".database-table-items").html("")
 
-        $.each(json, function(index){
+        $.each(json, function (index) {
 
           $this.closest(".database-toggle").children(".database-table-items").append(`<div class="table-item panel-item light-blue" data-table="${json[index].name}" data-db="${selectedDB}">
               <ul class="list-unstyled list-inline float-lt">
@@ -127,9 +127,9 @@ $(document).ready(function(){
             </div>`);
         })
 
-      }, function(){
+      }, function () {
         $(".loader-table").hide()
-      }, function(){
+      }, function () {
         $this.closest(".database-toggle").children(".database-table-items").html(`<div class="loader-table hide"></div>`);
         $(".loader-table").show();
       });
@@ -139,15 +139,15 @@ $(document).ready(function(){
   });
 
   // Settings Menu Permissions View item click
-  $(document).on("click", "#permissions-page", function(){
+  $(document).on("click", "#permissions-page", function () {
 
-    ajax("views/permissions.php", "GET", null, "HTML", function(data){
+    ajax("views/permissions.php", "GET", null, "HTML", function (data) {
 
       $("#ajx-permissions").html(data)
 
       ajax("modules/handler.php", "post", { type: "users" }, "JSON", function (json) {
 
-        $.each(json, function(index, element){
+        $.each(json, function (index, element) {
           const dbName = json[index].name;
 
           $(".sidebar-databases-items").append(`<div class="database-toggle">
@@ -171,13 +171,13 @@ $(document).ready(function(){
             </div>`);
         })
 
-      }, function(){
+      }, function () {
         SidebarLoader("hide")
-      }, function(){
+      }, function () {
         SidebarLoader("show")
       });
 
-    }, function(){
+    }, function () {
 
       tablePermissions_Initialize();
 
@@ -186,17 +186,17 @@ $(document).ready(function(){
   });
 
   // Table => Edit Button click
-  $(document).on("click", "#modal-edit-btn", function(){
+  $(document).on("click", "#modal-edit-btn", function () {
     $(".modal-edit-overlay").show();
     $(".modal-edit-insert").hide().fadeIn();
 
     // pass row data to modal inputs
     var tds = $(this).closest("tr").children("td");
     var rowData = [];
-    $.each(tds, function(){ rowData.push($(this).data("value")) });
+    $.each(tds, function () { rowData.push($(this).data("value")) });
 
     $(".modal-edit-insert .modal-section").html("");
-    $.each(tableColumns, function(index){
+    $.each(tableColumns, function (index) {
 
       const disabled = (index == 0) ? `disabled="true"` : ``;
 
@@ -209,10 +209,10 @@ $(document).ready(function(){
   });
 
   // Edit Modal => save button
-  $(document).on("click", "#save-btn", function(){
+  $(document).on("click", "#save-btn", function () {
 
     var tableRow = []; // get inptus values
-    $(".modal-edit-overlay input").each(function(){
+    $(".modal-edit-overlay input").each(function () {
       tableRow.push($(this).val())
     });
 
@@ -224,18 +224,18 @@ $(document).ready(function(){
 
     var pkColumnName, pkColumnData; // primary key => last item
 
-    $.each(tableRow, function(index){
-        if( index === 0 ) {
-          pkColumnName = tableColumns[index].name;
-          pkColumnData = tableRow[index];
-        } else {
-          data[tableColumns[index].name] = tableRow[index];
-        }
+    $.each(tableRow, function (index) {
+      if (index === 0) {
+        pkColumnName = tableColumns[index].name;
+        pkColumnData = tableRow[index];
+      } else {
+        data[tableColumns[index].name] = tableRow[index];
+      }
     });
 
     data[pkColumnName] = pkColumnData;
 
-    ajax ("modules/handler.php", "POST", data, "JSON", null, function(){
+    ajax("modules/handler.php", "POST", data, "JSON", null, function () {
       $(".modal-edit-overlay").hide();
       $(".table-item.selected").click();
     });
@@ -243,18 +243,18 @@ $(document).ready(function(){
   });
 
   // Table => Delete Button click
-  $(document).on("click", "#modal-delete-btn", function(){
+  $(document).on("click", "#modal-delete-btn", function () {
     $(".modal-delete-overlay").fadeIn()
     pkSelectedRow = $(this).closest("tr").children("td:first").data("value");
   });
 
   // Add Modal => add row button
-  $(document).on("click", "#modal-add", function(){
+  $(document).on("click", "#modal-add", function () {
     $(".modal-add-overlay").show(0);
     $(".modal-edit-insert").hide().fadeIn();
 
     $(".modal-edit-insert .modal-section").html("");
-    $.each(tableColumns, function(index){
+    $.each(tableColumns, function (index) {
       $(".modal-edit-insert .modal-section").append(`<div class="input-group">
         <label for="">${tableColumns[index].name}</label>
         <input type="text" class="input" value="">
@@ -263,7 +263,7 @@ $(document).ready(function(){
   });
 
   // Show Add Modal
-  $(document).on("click", "#add-row", function(){
+  $(document).on("click", "#add-row", function () {
 
     // bind update data object
     var data = {};
@@ -271,9 +271,9 @@ $(document).ready(function(){
     data['database'] = selectedDB;
     data['table'] = selectedTable;
 
-    $.each($(".modal-add-overlay input"), function(index){ data[tableColumns[index].name] = $(this).val() });
+    $.each($(".modal-add-overlay input"), function (index) { data[tableColumns[index].name] = $(this).val() });
 
-    ajax ("modules/handler.php", "POST", data, "JSON", null, function(){
+    ajax("modules/handler.php", "POST", data, "JSON", null, function () {
       $(".modal-add-overlay").hide();
       $(".table-item.selected").click();
     });
@@ -282,7 +282,7 @@ $(document).ready(function(){
   });
 
   // MODAL DELETE - DELETE BUTTON
-  $(document).on("click", "#delete-row", function(){
+  $(document).on("click", "#delete-row", function () {
 
     // bind ajax data param
     var data = {};
@@ -292,36 +292,36 @@ $(document).ready(function(){
     data[tableColumns[0].name] = pkSelectedRow;
 
     var col = tableColumns[0].name;
-    ajax ("modules/handler.php", "POST", data, "JSON", function(json){
-        if( json == true ) {
-          $(".modal-delete-overlay").hide();
-          $(".table-item.selected").click();
-        }
-      }, function(){
-        $(".modal-delete").css({"pointer-events": "all", "opacity": "1"})
-      }, function(){
-        $(".modal-delete").css({"pointer-events": "none", "opacity": ".8"})
+    ajax("modules/handler.php", "POST", data, "JSON", function (json) {
+      if (json == true) {
+        $(".modal-delete-overlay").hide();
+        $(".table-item.selected").click();
       }
+    }, function () {
+      $(".modal-delete").css({ "pointer-events": "all", "opacity": "1" })
+    }, function () {
+      $(".modal-delete").css({ "pointer-events": "none", "opacity": ".8" })
+    }
     );
 
   });
 
   // Settings Menu logout item click
-  $(document).on("click", "#logout-btn", function(){
-    ajax ("modules/handler.php", "POST", { type: "signOut" });
-    ajax ("views/login.html", "GET", {}, "HTML", function(data){
+  $(document).on("click", "#logout-btn", function () {
+    ajax("modules/handler.php", "POST", { type: "signOut" });
+    ajax("views/login.html", "GET", {}, "HTML", function (data) {
       $("#ajx-page").html(data).hide(0).fadeIn(800)
     });
   });
 
   // Datatable Initiliaze
-  function tableData_Initialize(){
+  function tableData_Initialize() {
 
     // VARIABLES
     const databaseName = $(".table-item.selected").data("db")
     const tableName = $(".table-item.selected").data("table")
 
-    $.ajax ({
+    $.ajax({
       url: "modules/handler.php",
       type: "POST",
       data: {
@@ -330,35 +330,35 @@ $(document).ready(function(){
         database: databaseName
       },
       dataType: "JSON",
-      beforeSend: function(){
+      beforeSend: function () {
         StraightLoader("show")
       },
-      success: function(json){
+      success: function (json) {
         StraightLoader("hide")
 
         tableColumns = json.columns;
 
-        if( !jQuery.isEmptyObject(json.rows) ){
-          var cols = columns (addControlButtons (json.rows));
+        if (!jQuery.isEmptyObject(json.rows)) {
+          var cols = columns(addControlButtons(json.rows));
 
-          $("#table-data thead, #table-data tbody").children ().empty ();
-          cols.forEach (e => $("#table-data thead").append ("<th>" + e + "</th>"));
+          $("#table-data thead, #table-data tbody").children().empty();
+          cols.forEach(e => $("#table-data thead").append("<th>" + e + "</th>"));
 
-          $("#table-data").DataTable ({
-              destroy: false,
-              data: addControlButtons (json.rows),
-              columns: dataTableColumns (cols),
-              createdRow: function (row, data, index){
-                var tds = $(row).children("td");
-                for( var i = 0; i < tds.length; i++ ){
-                  tds[i].setAttribute("data-column", cols[i]);
-                  tds[i].setAttribute("data-value", data[cols[i]]);
-                }
+          $("#table-data").DataTable({
+            destroy: false,
+            data: addControlButtons(json.rows),
+            columns: dataTableColumns(cols),
+            createdRow: function (row, data, index) {
+              var tds = $(row).children("td");
+              for (var i = 0; i < tds.length; i++) {
+                tds[i].setAttribute("data-column", cols[i]);
+                tds[i].setAttribute("data-value", data[cols[i]]);
               }
+            }
           });
         } else {
-          $("#table-data thead").children ().empty ();
-          tableColumns.forEach (e => $("#table-data thead").append ("<th>" + e.name + "</th>"));
+          $("#table-data thead").children().empty();
+          tableColumns.forEach(e => $("#table-data thead").append("<th>" + e.name + "</th>"));
         }
 
       }
@@ -367,13 +367,13 @@ $(document).ready(function(){
   }
 
   // Datatable Initiliaze
-  function tableStructure_Initialize(){
+  function tableStructure_Initialize() {
 
     // VARIABLES
     const databaseName = $(".table-item.selected").data("db")
     const tableName = $(".table-item.selected").data("table")
 
-    $.ajax ({
+    $.ajax({
       url: "modules/handler.php",
       type: "POST",
       data: {
@@ -382,21 +382,21 @@ $(document).ready(function(){
         database: databaseName
       },
       dataType: "JSON",
-      beforeSend: function(){
+      beforeSend: function () {
         StraightLoader("show")
       },
-      success: function(json){
+      success: function (json) {
         StraightLoader("hide")
 
-        var cols = columns (json.columns);
+        var cols = columns(json.columns);
 
-        $("#table-structure thead").children ().empty ();
-        cols.forEach (e => $("#table-structure thead").append ("<th>" + e + "</th>"));
+        $("#table-structure thead").children().empty();
+        cols.forEach(e => $("#table-structure thead").append("<th>" + e + "</th>"));
 
-        $("#table-structure").DataTable ({
-            destroy: false,
-            data: json.columns,
-            columns: dataTableColumns ( columns (json.columns) )
+        $("#table-structure").DataTable({
+          destroy: false,
+          data: json.columns,
+          columns: dataTableColumns(columns(json.columns))
         });
       }
     });
@@ -404,7 +404,7 @@ $(document).ready(function(){
   }
 
   // Datatable Initialize 
-  function tablePermissions_Initialize(){
+  function tablePermissions_Initialize() {
 
     // VARIABLES
     const selectedUser = $(".user-item.selected").data("user");
@@ -443,13 +443,13 @@ $(document).ready(function(){
   }
 
   // Get All Databases
-  function getAllDatabasesNames(){
+  function getAllDatabasesNames() {
 
     ajax("modules/handler.php", "post", { type: "databases" }, "JSON", function (json) {
 
       $("#db-count").text(json.count)
 
-      $.each(json.databases, function(index){
+      $.each(json.databases, function (index) {
 
         const dbName = json.databases[index].name;
         const dbCount = json.databases[index].count;
@@ -477,40 +477,40 @@ $(document).ready(function(){
           </div>`);
       });
 
-    }, function(){
+    }, function () {
       SidebarLoader("hide")
-    }, function(){
+    }, function () {
       SidebarLoader("show")
     });
 
   }
 
   // Logs Panel Updating
-  function panelLogsInit(){
+  function panelLogsInit() {
 
     const sldTable = $(".table-item.selected").length;
 
-    if( !sldTable ){ // if no table selected
+    if (!sldTable) { // if no table selected
 
-      $(".logs-panel").removeClass ("active");
+      $(".logs-panel").removeClass("active");
 
-    } else{ // if table selected
+    } else { // if table selected
 
       $("#logs-tableName").text($(".table-item.selected").attr("data-table"));
 
-      $(".logs-panel").addClass ("active");
+      $(".logs-panel").addClass("active");
 
-      ajax ("modules/handler.php", "POST", {
-          type:'logs',
-          database: selectedDB,
-          table: selectedTable
-      }, "JSON", function(json){
+      ajax("modules/handler.php", "POST", {
+        type: 'logs',
+        database: selectedDB,
+        table: selectedTable
+      }, "JSON", function (json) {
 
-      $("#logs-countLogs").text(json.length);
+        $("#logs-countLogs").text(json.length);
 
-      $(".panel-content").empty ();
+        $(".panel-content").empty();
 
-        $.each(json, function(index){
+        $.each(json, function (index) {
 
           const logExpression = [];
           logExpression["insert"] = "has inserted a new record table";
@@ -531,7 +531,7 @@ $(document).ready(function(){
             </div>
           </div>`;
 
-          $(".panel-content").append (logComponent);
+          $(".panel-content").append(logComponent);
 
         });
 
@@ -542,38 +542,38 @@ $(document).ready(function(){
   }
 
   // check if connected to datatabase
-  function checkIfConnected (){
+  function checkIfConnected() {
 
-    ajax("modules/handler.php", "post", {type: "checkIfConnected"}, "JSON", function(json){
+    ajax("modules/handler.php", "post", { type: "checkIfConnected" }, "JSON", function (json) {
 
-        if( json == true ){
-          username = $("#username").val();
-          ajax ("views/home.php", "GET", {}, "HTML", function(data){
-            $("#ajx-page").html(data)
-          }, function(){
-            getAllDatabasesNames();
-          });
+      if (json == true) {
+        username = $("#username").val();
+        ajax("views/home.php", "GET", {}, "HTML", function (data) {
+          $("#ajx-page").html(data)
+        }, function () {
+          getAllDatabasesNames();
+        });
 
-        }
+      }
 
-      }, function(){
+    }, function () {
 
-        RoundedLoader("hide");
+      RoundedLoader("hide");
 
-      }, function() {
+    }, function () {
 
-         RoundedLoader("show", "Check if Connected To Mysql Server ...")
+      RoundedLoader("show", "Check if Connected To Mysql Server ...")
 
     });
 
   }
 
   // check mysql status
-  function checkMysqlConnStatus(){
+  function checkMysqlConnStatus() {
 
-    setInterval(function(){
+    setInterval(function () {
 
-      ajax ("modules/handler.php", "POST", {type: "status"}, "JSON", function(json){
+      ajax("modules/handler.php", "POST", { type: "status" }, "JSON", function (json) {
 
       })
 
@@ -582,6 +582,6 @@ $(document).ready(function(){
   }
 
   // close all modals
-  function closeAllModals(){ $(".modal-edit-overlay, .modal-add-overlay, .modal-delete-overlay").hide() }
+  function closeAllModals() { $(".modal-edit-overlay, .modal-add-overlay, .modal-delete-overlay").hide() }
 
 });

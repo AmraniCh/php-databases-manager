@@ -69,8 +69,8 @@
     <!-- END SECTION CONTAINER -->
 
     <?php include "componenets/modals/editModal.html" ?>
-    <?php include "componenets/modals/deleteModal.html" ?>
-    <?php include "componenets/modals/addModal.html" ?>
+    <?php include "componenets/modals/deleteRowModal.html" ?>
+    <?php include "componenets/modals/addRowModal.html" ?>
 
   </div>
   <!-- END INNER CONTAINER -->

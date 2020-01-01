@@ -54,6 +54,9 @@
       </div>
     <!-- END SECTION CONTAINER -->
 
+    <?php include "componenets/modals/addUserModal.html" ?>
+    <?php include "componenets/modals/deleteUserModal.html" ?>
+
   </div>
   <!-- END INNER CONTAINER -->
 
