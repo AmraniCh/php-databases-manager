@@ -253,7 +253,7 @@
 }
 
 .modal-edit-insert .modal-section,
-.modal-edit-insert .modal-header { padding: 15px }
+.modal-edit-insert .modal-header { padding: 15px 15px 0 15px }
 
 .modal-delete{
   position: absolute;
@@ -273,7 +273,7 @@
 
 .modal-edit-insert-overlay.active .modal-edit-insert{ display: block }
 
-.modal-edit-insert .modal-section{ overflow-y: auto; height: calc(100% - 58px) }
+.modal-edit-insert .modal-section{ overflow-y: auto; height: calc(100% - 38px) }
 
 .modal-edit-insert .modal-footer{
   padding: 10px 16px;

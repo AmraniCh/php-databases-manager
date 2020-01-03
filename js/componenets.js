@@ -107,4 +107,15 @@ $(document).ready(function(){
     $(".modal-adduser-overlay").show();
   });
 
+  // Hide Settings Menu When clicking outside
+  $(document).on("click", function(e){
+    const $this = $(e.target);
+
+    if( $this.closest(".settings-menu").length == 0 && $this.closest("#settings-btn").length == 0 )
+      $(".settings-menu").hide();
+    else 
+      $(".settings-menu").show();
+
+  });
+
 })

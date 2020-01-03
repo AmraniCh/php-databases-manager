@@ -23,7 +23,7 @@ class UserManager
     }
 
     /**
-     * Get all user
+     * Get all users
      */
     public static function getUsers ($connection) : array
     {
@@ -111,6 +111,32 @@ class UserManager
     public static function checkIfConnected() : bool {
       session_start ();
       return ( isset($_SESSION["user"]) ) ? true : false;
+    }
+
+    /**
+     * Get user permissions
+     */
+    public static function getUserPermissions($user, $connection){
+        $query = QueryHelper::get_permissions($user);
+
+        if(!QueryHelper::exec_query($query, $connection, "row"))
+            throw new Exception("Get User Permissions Failed.");
+
+        $grant_string = QueryHelper::exec_query($query, $connection, "row")[0][0];
+
+        if( strpos($grant_string, 'ALL PRIVILEGES') ){
+            $data["SELECT"] = $data["INSERT"] = $data["UPDATE"] = $data["DELETE"] = "Yes";
+            return array($data);
+        }
+
+        $permissions = array_map('trim' ,explode(",", str_replace("GRANT", "", explode("ON", $grant_string)[0])));
+
+        $data["SELECT"] = ( in_array("SELECT", $permissions) ) ? "Yes" : "No";
+        $data["INSERT"] = ( in_array("INSERT", $permissions) ) ? "Yes" : "No";
+        $data["UPDATE"] = ( in_array("UPDATE", $permissions) ) ? "Yes" : "No";
+        $data["DELETE"] = ( in_array("DELETE", $permissions) ) ? "Yes" : "No";
+
+        return array($data);
     }
 
 }

@@ -13,6 +13,7 @@ $(document).ready(function () {
     selectedDB,
     selectedTable,
     pkSelectedRow,
+    selectedUser,
     username;
 
   // Connection To Database Button Click
@@ -42,7 +43,6 @@ $(document).ready(function () {
   // Navigation Table Item CLick
   $(document).on("click", ".table-item", function () {
     const $this = $(this);
-
     closeAllModals();
 
     selectedTable = $this.data("table");
@@ -140,49 +140,7 @@ $(document).ready(function () {
 
   // Settings Menu Permissions View item click
   $(document).on("click", "#permissions-page", function () {
-
-    ajax("views/permissions.php", "GET", null, "HTML", function (data) {
-
-      $("#ajx-permissions").html(data)
-
-      ajax("modules/handler.php", "post", { type: "users" }, "JSON", function (json) {
-
-        $.each(json, function (index, element) {
-          const dbName = json[index].name;
-
-          $(".sidebar-databases-items").append(`<div class="database-toggle">
-            <div class="user-item panel-item blue" data-toggle="close" data-user="${dbName}">
-              <ul class="list-unstyled list-inline float-lt">
-                <li>
-                  <button type="button" class="btn">
-                    <i class="icon-big mdi mdi-account"></i>
-                  </button>
-                </li>
-                <li>${dbName}</li>
-              </ul>
-              <button type="button" class="btn float-rt hide" data-value="close">
-                <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
-              </button>
-              <button type="button" class="btn float-rt hide" data-value="open">
-                <i class="icon-big mdi mdi-arrow-up-drop-circle"></i>
-              </button>
-              <div class="clearfix"></div>
-            </div>
-            </div>`);
-        })
-
-      }, function () {
-        SidebarLoader("hide")
-      }, function () {
-        SidebarLoader("show")
-      });
-
-    }, function () {
-
-      tablePermissions_Initialize();
-
-    });
-
+    permissionsView();
   });
 
   // Table => Edit Button click
@@ -314,6 +272,43 @@ $(document).ready(function () {
     });
   });
 
+  $(document).on("click", "#add-user", function(){
+    const user = $("#user").val();
+    const pass = $("#pass").val();
+
+    ajax("modules/handler.php", "POST", { type: "register", user: user, pass: pass }, "JSON", null, () => {
+      $(".modal-adduser-overlay").hide();
+      getAllUsers();
+      permissionsView();
+    });
+
+  });
+
+  $(document).on("click", ".user-item", function(){
+    closeAllModals();
+    selectedUser = $(this).data("user");
+
+    ajax("views/permissionsSectionContent", "GET", null, "HTML", (data) => {
+      $("#ajx-content").html(data);
+    }, function(){
+      tablePermissions_Initialize();
+      $("#db-user").text(selectedUser);
+    });
+
+  });
+
+  $(document).on("click", "#delete-user", function(){
+
+    if( selectedUser !== "root" ){
+      ajax("modules/handler.php", "POST", { type: "kick", user: selectedUser }, "JSON", null, () => {
+        $(".modal-deleteuser-overlay").hide();
+        getAllUsers();
+        permissionsView();
+      });
+    }
+
+  });
+
   // Datatable Initiliaze
   function tableData_Initialize() {
 
@@ -406,39 +401,32 @@ $(document).ready(function () {
   // Datatable Initialize 
   function tablePermissions_Initialize() {
 
-    // VARIABLES
-    const selectedUser = $(".user-item.selected").data("user");
-
-    /*
     $.ajax ({
       url: "modules/handler.php",
       type: "POST",
-      data: {
-        type: "table",
-        table: tableName,
-        database: databaseName
-      },
+      data: { type: "permissions", user: selectedUser },
       dataType: "JSON",
       beforeSend: function(){
-        StraightLoader("show")
+        StraightLoader("show");
       },
       success: function(json){
-        StraightLoader("hide")
+        StraightLoader("hide");
 
-        var cols = columns (json.columns);
+        var cols = columns (json);
 
-        $("#table-structure thead").children ().empty ();
-        cols.forEach (e => $("#table-structure thead").append ("<th>" + e + "</th>"));
+        $("#table-permissions thead, #table-permissions tbody").children ().empty ();
+        cols.forEach (e => {
+          $("#table-permissions thead").append ("<th>" + e + "</th>");
+          console.log(e);
+        });
 
-        $("#table-structure").DataTable ({
+        $("#table-permissions").DataTable ({
             destroy: false,
-            data: json.columns,
-            columns: dataTableColumns ( columns (json.columns) )
+            data: json,
+            columns: dataTableColumns ( cols )
         });
       }
-    }); */
-
-    $('#table-permissions').DataTable();
+    });
 
   }
 
@@ -482,6 +470,55 @@ $(document).ready(function () {
     }, function () {
       SidebarLoader("show")
     });
+
+  }
+
+  // Get All Users
+  function getAllUsers(){
+
+    ajax("modules/handler.php", "post", { type: "users" }, "JSON", function (json) {
+      $(".sidebar-databases-items").empty ();
+      
+      $.each(json, function (index, element) {
+        const dbName = json[index].name;
+
+        $(".sidebar-databases-items").append(`<div class="database-toggle">
+          <div class="user-item panel-item blue" data-toggle="close" data-user="${dbName}">
+            <ul class="list-unstyled list-inline float-lt">
+              <li>
+                <button type="button" class="btn">
+                  <i class="icon-big mdi mdi-account"></i>
+                </button>
+              </li>
+              <li>${dbName}</li>
+            </ul>
+            <button type="button" class="btn float-rt hide" data-value="close">
+              <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
+            </button>
+            <button type="button" class="btn float-rt hide" data-value="open">
+              <i class="icon-big mdi mdi-arrow-up-drop-circle"></i>
+            </button>
+            <div class="clearfix"></div>
+          </div>
+          </div>`);
+      });
+    });
+  }
+
+  // Get Permissions View
+  function permissionsView(){
+
+    ajax("views/permissions.php", "GET", null, "HTML", function (data) {
+
+      $("#ajx-permissions").html(data)
+
+        getAllUsers();
+
+      }, function () {
+        SidebarLoader("hide")
+      }, function () {
+        SidebarLoader("show")
+      });
 
   }
 
@@ -582,6 +619,6 @@ $(document).ready(function () {
   }
 
   // close all modals
-  function closeAllModals() { $(".modal-edit-overlay, .modal-add-overlay, .modal-delete-overlay").hide() }
+  function closeAllModals() { $(".modal-edit-overlay, .modal-add-overlay, .modal-delete-overlay, .modal-adduser-overlay, .modal-deleteuser-overlay").hide() }
 
 });

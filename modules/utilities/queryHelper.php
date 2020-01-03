@@ -46,14 +46,18 @@ class QueryHelper
         return "REVOKE $privilege ON $database.$table FROM '$user'@'localhost'";
     }
 
-    public static function exec_query ($query, $connection, $mode = MYSQLI_ASSOC)
+    public static function exec_query ($query, $connection, $fetch_mode = "assoc")
     {
         $data = [];
 
         $result = $connection->query($query);
-        while ($row = (($mode == MYSQLI_ASSOC) ? $result->fetch_assoc() : $result->fetch_row()))
+        while ($row = ( $fetch_mode == "assoc" ) ? $result->fetch_assoc() : $result->fetch_row())
             array_push($data, $row);
             
         return $data;
+    }
+
+    public static function get_permissions($user){
+        return "SHOW GRANTS FOR '".$user."'@'localhost';";
     }
 }

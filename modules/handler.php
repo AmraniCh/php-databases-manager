@@ -98,6 +98,11 @@ try
         case "revoke":
             echo json_encode (UserManager::revokePermission ($_POST['user'], $_POST['privilege'], '*', '*', $manager->connection));
             break;
+
+        case "permissions":
+            echo json_encode (UserManager::getUserPermissions($_POST['user'], $manager->connection));
+            break;
+
     }
 
 }

@@ -45,11 +45,7 @@
     <!-- START SECTION CONTAINER -->
       <div id="ajx-content" class="section-container text-color">
 
-        <!-- <h1 class="no-selected text-center">no user selected</h1> -->
-
-        <?php include "componenets/sectionHeader_permissions.html"; ?>
-
-        <?php include "componenets/datatables/tablePermissions.html" ?>
+        <h1 class="no-selected text-center">no user selected</h1>
 
       </div>
     <!-- END SECTION CONTAINER -->
