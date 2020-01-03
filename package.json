@@ -1,7 +1,7 @@
 {
-  "name": "databases-manager-api",
+  "name": "database_manager_api",
   "version": "0.1.0",
-  "description": "MySQL Databases Manager API",
+  "description": "MySQL Database Manager API",
   "main": "index.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,22 +11,15 @@
     "url": "git+https://github.com/ELAMRANI744/Databases-Manager-php.git"
   },
   "keywords": [
-    "mysql",
-    "databases",
+    "MySQL",
+    "database",
     "manager",
-    "sql",
     "api"
   ],
-  "author": "El Amrani Chakir & Ibrahim Arreda",
+  "author": "EL AMRANI CHAKIR, IBRAHIM ARREDA",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ELAMRANI744/Databases-Manager-php/issues"
   },
-  "homepage": "https://github.com/ELAMRANI744/Databases-Manager-php#readme",
-  "dependencies": {
-    "webpack": "^4.41.5"
-  },
-  "devDependencies": {
-    "webpack-cli": "^3.3.10"
-  }
+  "homepage": "https://github.com/ELAMRANI744/Databases-Manager-php#readme"
 }
