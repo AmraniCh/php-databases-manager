@@ -116,7 +116,8 @@ class UserManager
     /**
      * Get user permissions
      */
-    public static function getUserPermissions($user, $connection){
+    public static function getUserPermissions($user, $connection)
+    {
         $query = QueryHelper::get_permissions($user);
 
         if(!QueryHelper::exec_query($query, $connection, "row"))
@@ -124,17 +125,19 @@ class UserManager
 
         $grant_string = QueryHelper::exec_query($query, $connection, "row")[0][0];
 
-        if( strpos($grant_string, 'ALL PRIVILEGES') ){
+        if( strpos($grant_string, 'ALL PRIVILEGES') )
+        {
             $data["SELECT"] = $data["INSERT"] = $data["UPDATE"] = $data["DELETE"] = "Yes";
+            
             return array($data);
         }
 
         $permissions = array_map('trim' ,explode(",", str_replace("GRANT", "", explode("ON", $grant_string)[0])));
 
-        $data["SELECT"] = ( in_array("SELECT", $permissions) ) ? "Yes" : "No";
-        $data["INSERT"] = ( in_array("INSERT", $permissions) ) ? "Yes" : "No";
-        $data["UPDATE"] = ( in_array("UPDATE", $permissions) ) ? "Yes" : "No";
-        $data["DELETE"] = ( in_array("DELETE", $permissions) ) ? "Yes" : "No";
+        $keys = ["SELECT", "INSERT", "UPDATE", "DELETE"];
+
+        foreach ($keys as $key)
+            $data[$key] = ( in_array($key, $permissions) ) ? "Yes" : "No";
 
         return array($data);
     }
