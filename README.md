@@ -13,6 +13,8 @@
 
 # What's included
 
+```
+Databases Manager API
 ├── css
 |  ├── animation.css
 |  ├── app.css
@@ -90,6 +92,7 @@
    ├── permissionsSectionContent.php
    ├── tableDataTabsView.php
    └── tableDataVerticalView.php
+```
 
 # Licence
 
