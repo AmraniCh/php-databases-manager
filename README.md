@@ -3,15 +3,32 @@
 <h3>Description</h3>
 <p>This project is a simulation of PHPMyAdmin, it allows you to control all of your data (excluding data definition mechanisms)</p>
 
+![](https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/81d0a690446911.5e17748c2edc4.png).
+
 <h3>Functionalities</h3>
 
 <ul>
-  <li>The website depends on user's authentication.</li>
+  <li>The application depends on user's authentication.</li>
   <li>It provides the user the ability to navigate all databases -as well as their tables- whom he is allowed to see.</li>
   <li>Not to mention, it also serves the possibility of editing, inserting and deleting records.</li>
+  <li>Showing current user permissions concerning the database selected.</li>
 </ul>
 
-# What's included
+## Usage
+
+Download from github, clone the repo :
+
+```console
+  git clone https://github.com/ELAMRANI744/Databases-Manager-api
+```
+
+Then run application in localhost :
+
+```
+  localhost[:port]/Databases-Manager-api
+```
+
+## What's included
 
 ```
 Databases Manager API
@@ -94,7 +111,12 @@ Databases Manager API
    └── tableDataVerticalView.php
 ```
 
-# Licence
+## License
 
 Copyright 2020 To (EL AMRANI CHAKIR, IBRAHIM ARREDA) Team Licensed under MIT (https://github.com/ELAMRANI744/Databases-Manager-api/blob/master/LICENSE).
+
+## Wireframing & Mockup
+
+See in **![Behance](https://www.behance.net/gallery/90446911/Databases-Manager-API)**.
+
 
