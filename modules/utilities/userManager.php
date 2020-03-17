@@ -99,23 +99,22 @@ class UserManager
         return true;
     }
 
-    /**
-     * Sign out
-     */
-    public static function signOut () {
-      session_start ();
-      unset($_SESSION['user']);
-      unset($_SESSION['pass']);
+    // Sign out
+    public static function signOut () 
+    {
+        session_start ();
+        session_destroy ();
     }
 
-    public static function checkIfConnected() : bool {
-      session_start ();
-      return ( isset($_SESSION["user"]) ) ? true : false;
+    // Checks if there's an open session  
+    public static function checkIfConnected()
+    {
+        session_start ();
+      
+        return isset ($_SESSION["user"]);
     }
 
-    /**
-     * Get user permissions
-     */
+    // Get user permissions
     public static function getUserPermissions($user, $connection)
     {
         $query = QueryHelper::get_permissions($user);
