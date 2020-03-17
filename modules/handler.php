@@ -1,4 +1,8 @@
 <?php
+/*
+* This file serves as the FrontController,
+* It receives the type of the request, then handle it 
+*/
 
 include "loader.php";
 
@@ -57,9 +61,6 @@ try
         break;
 
         case "update":
-
-            //echo json_encode(end($_POST)); break; => test the end of array
-
             // move the pointer to the end of the array
             end($_POST);
             // fetches the key of the element pointed to by the pointer
@@ -102,7 +103,6 @@ try
         case "permissions":
             echo json_encode (UserManager::getUserPermissions($_POST['user'], $manager->connection));
             break;
-
     }
 
 }
