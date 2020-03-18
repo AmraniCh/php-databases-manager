@@ -3,7 +3,12 @@
 <h3>Description</h3>
 <p>This project is a simulation of PHPMyAdmin, it allows you to control all of your data (excluding data definition mechanisms)</p>
 
-![](https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/81d0a690446911.5e17748c2edc4.png).
+![](https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/81d0a690446911.5e17748c2edc4.png)
+
+<h5>Database Schema Visualization</h5>
+
+![](https://i.imgur.com/8hfwPXP.png)
+![](https://i.imgur.com/wR6mgGq.png)
 
 <h3>Functionalities</h3>
 
@@ -12,6 +17,7 @@
   <li>It provides the user the ability to navigate all databases -as well as their tables- whom he is allowed to see.</li>
   <li>Not to mention, it also serves the possibility of editing, inserting and deleting records.</li>
   <li>Showing current user permissions concerning the database selected.</li>
+  <li><b>[New] </b>The possibility of visualizing a database schema.</li>
 </ul>
 
 ## Usage
