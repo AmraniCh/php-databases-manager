@@ -3,7 +3,7 @@
 <h3>Description</h3>
 <p>This project is a simulation of PHPMyAdmin, it allows you to control all of your data (excluding data definition mechanisms)</p>
 
-![](https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/81d0a690446911.5e17748c2edc4.png)
+![](https://i.imgur.com/QDV1Kzq.png)
 
 <h5>Database Schema Visualization</h5>
 
@@ -119,7 +119,7 @@ Databases Manager API
 
 ## License
 
-Copyright 2020 To (EL AMRANI CHAKIR, IBRAHIM ARREDA) Team Licensed under MIT (https://github.com/ELAMRANI744/Databases-Manager-api/blob/master/LICENSE).
+Copyright 2020 To (<b>EL AMRANI CHAKIR, IBRAHIM AREDA</b>) Team Licensed under MIT (https://github.com/ELAMRANI744/Databases-Manager-api/blob/master/LICENSE).
 
 ## Wireframing & Mockup
 
