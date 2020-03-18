@@ -309,6 +309,14 @@ $(document).ready(function () {
 
   });
 
+  // Redirecting to the databse designer
+  $(document).on ('click', '.btn-schema', function (){
+    // Retrieve the name of the database item
+    let db = $(this).parent ('.database-item').attr ('data-db');
+    // Redirect to the database designer
+    window.location.href = `designer.php?db=${db}`;
+  });
+
   // Datatable Initiliaze
   function tableData_Initialize() {
 
@@ -452,11 +460,15 @@ $(document).ready(function () {
               </li>
               <li>${dbName} (${dbCount})</li>
             </ul>
+            
             <button type="button" class="btn float-rt hide" data-value="close">
               <i class="icon-big mdi mdi-arrow-down-drop-circle"></i>
             </button>
             <button type="button" class="btn float-rt hide" data-value="open">
               <i class="icon-big mdi mdi-arrow-up-drop-circle"></i>
+            </button>
+            <button type="button" class="btn float-rt btn-schema">
+              <i class="icon-big mdi mdi-file-tree"></i>
             </button>
             <div class="clearfix"></div>
           </div>

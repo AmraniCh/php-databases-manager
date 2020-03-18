@@ -462,7 +462,10 @@ body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
 
 .logs-panel.active .no-table-selected{ display: none }
 
-
 /* OTHERS */
 #table-permissions_wrapper{ margin-top: 30px }
+
 .dt-container[data-toggle='data'] #table-structure_wrapper{ display: none }
+
+.btn-schema {margin-right: 5px;}
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{database}} - Schema Designer</title>
+    <link rel="stylesheet" href="css/graphics.css">
+    <link rel="stylesheet" href="css/rules.css">
+    <script src='js/jquery.min.js'></script>
+    <script src='js/highlight.js'></script>
+</head>
+<body>
+    <div class="header">
+        <h2>{{database}}</h2>
+    </div>
+    <div class="container">
+        {% for table in tables %}
+        <div class="table-container" data-table={{table.name}}>
+            <div class="head">{{table.name}}</div>
+            <div class="body">
+                <ul>
+                    {% for column in table.columns %}
+                    {% set isForeign = column.referenced_table is defined %}
+                        <li data-column={{column.name}}
+                            {% if isForeign %}
+                                {{ 'data-reftable=' ~ column.referenced_table ~ ' data-refcolumn=' ~ column.referenced_column }}
+                                class='reference-column'
+                            {% endif %}
+                        >
+                            <a>{{column.name}}</a>
+                            {% if column.isAuto %}<img class='detail' src='icons/auto.png' />{% endif %}
+                            {% if column.isPrimary %}<img class='detail bg-gold' src='icons/key.png' />{% endif %}
+                            {% if isForeign %}<img class='detail bg-gray' src='icons/key.png' />{% endif %}
+                            <span class='detail'>{{column.type}}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

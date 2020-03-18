@@ -10,7 +10,7 @@ function ajax (url, method, data, dataType, success, complete = null, beforeSend
         type: method,
         dataType: dataType,
         data: data,
-        async: (async == null) ? true : false,
+        async: (async == null),
         beforeSend: beforeSend,
         success: success,
         complete: complete

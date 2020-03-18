@@ -42,11 +42,25 @@ class Table implements Container
         );
 
         foreach ($result as $row)
-            $this->columns[] = new Column(
+        {
+            $col = new Column(
                 $row["COLUMN_NAME"],
-                $row["DATA_TYPE"],
-                strpos ($row["EXTRA"], "auto_increment") !== (!true)
+                $row["COLUMN_TYPE"],
+                strpos ($row["EXTRA"], "auto_increment") !== (false),
+                strpos ($row["COLUMN_KEY"], 'PRI') !== (false)
             );
+
+            # Check if this is a referencing column
+            if (strpos ($row["COLUMN_KEY"], 'MUL') !== false)
+            {
+                # Retrieve details
+                $details = QueryHelper::exec_query(QueryHelper::get_fk_details($col->name, $this->name, $this->database), $this->connection) [0];
+                # Reconstruct the column
+                $col = new ReferenceColumn($col, $details['REF_TABLE'], $details['REF_COLUMN']);
+            }
+
+            $this->columns[] = $col;
+        }
 
         return $this->columns;
     }

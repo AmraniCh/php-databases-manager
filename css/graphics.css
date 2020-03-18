@@ -1,0 +1,88 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul
+{
+    list-style: none;
+}
+
+.header,
+.table-container > .head
+{
+    color: white;
+    background: linear-gradient(#663acf, #512da8);
+}
+
+.header
+{
+    padding: 30px;
+    box-shadow: 0 0 3px black;
+}
+
+.container
+{
+    padding: 30px;
+    position: relative;
+}
+
+.table-container
+{
+    float: left;
+    overflow: hidden;
+    box-shadow: 0 0 3px black;
+    border-radius: 4px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    transition: transform 0.5s;
+}
+
+.table-container:hover > .head
+{
+    background: gold;
+    color: #663acf;
+}
+
+.table-container > .head
+{
+    font-weight: bold;
+    border-bottom: 1px solid silver;
+    padding: 15px;
+    transition: color 0.5s, background 1s;
+    cursor: pointer;
+}
+
+span.detail
+{
+    color: silver;
+    float: right;
+    margin-left: 20px;
+    font-size: small;
+}
+
+img.detail
+{
+    width: 14px;
+    height: auto;
+    margin-left: 3px;
+    background: #512da8;
+    border-radius: 4px;
+    padding: 1px;
+    box-shadow: 0 0 2px gray;
+}
+
+.table-container > .body > ul
+{
+    padding: 5px 0;
+    background: #fefaff;
+    transition: border-left 0.5s;
+}
+
+.table-container > .body > ul > li
+{
+    color: #512da8;
+    padding: 5px 15px;
+    background: transparent;
+}

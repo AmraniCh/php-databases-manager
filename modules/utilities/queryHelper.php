@@ -11,8 +11,14 @@ class QueryHelper
 
     public static function get_columns ($table, $database)
     {
-        return "select COLUMN_NAME, DATA_TYPE, COLUMN_DEFAULT, IS_NULLABLE, EXTRA 
+        return "select COLUMN_NAME, COLUMN_TYPE, COLUMN_DEFAULT, IS_NULLABLE, EXTRA, COLUMN_KEY 
         from information_schema.columns where table_name = '$table' and table_schema = '$database'";
+    }
+
+    public static function get_fk_details ($column, $table, $database)
+    {
+        return "SELECT REFERENCED_TABLE_NAME as REF_TABLE, REFERENCED_COLUMN_NAME as REF_COLUMN FROM information_schema.KEY_COLUMN_USAGE 
+        WHERE TABLE_SCHEMA='$database' AND TABLE_NAME='$table' AND COLUMN_NAME='$column'";
     }
 
     public static function get_rows ($table)
@@ -51,13 +57,18 @@ class QueryHelper
         $data = [];
 
         $result = $connection->query($query);
+
+        if (!$result)
+            throw new Exception ("An error occurred when trying to execute: $query");
+
         while ($row = ( $fetch_mode == "assoc" ) ? $result->fetch_assoc() : $result->fetch_row())
             array_push($data, $row);
             
         return $data;
     }
 
-    public static function get_permissions($user){
-        return "SHOW GRANTS FOR '".$user."'@'localhost';";
+    public static function get_permissions($user)
+    {
+        return "SHOW GRANTS FOR '$user'@'localhost';";
     }
 }
