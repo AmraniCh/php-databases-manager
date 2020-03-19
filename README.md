@@ -8,7 +8,6 @@
 <h5>Database Schema Visualization</h5>
 
 ![](https://i.imgur.com/8hfwPXP.png)
-![](https://i.imgur.com/wR6mgGq.png)
 
 <h3>Functionalities</h3>
 
