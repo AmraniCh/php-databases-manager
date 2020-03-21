@@ -7,7 +7,7 @@ class LogsManager
 
     public static function fixPath ()
     {
-        self::$path = $_SERVER["DOCUMENT_ROOT"] . "/DatabaseManagerAPI/logs/logs.txt";
+        self::$path = $_SERVER["DOCUMENT_ROOT"] . "/Databases-Manager-api/logs/logs.txt";
     }
 
     public static function read()
