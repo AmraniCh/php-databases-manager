@@ -1,4 +1,4 @@
 .vscode/
-node_modules/
-test_units/
 vendor/
+nodes_modules/
+test_units/
