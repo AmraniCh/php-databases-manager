@@ -1,4 +1,5 @@
-.vscode/
-vendor/
-nodes_modules/
-test_units/
+/.idea/
+/.vscode/
+/vendor/
+/node_modules/
+/test_units/
