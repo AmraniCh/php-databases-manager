@@ -1,8 +1,7 @@
 {
-  "name": "database_manager_api",
+  "name": "databases-manager-api",
   "version": "1.0.0",
   "description": "MySQL Database Manager API",
-  "main": "index.php",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ELAMRANI744/Databases-Manager-php.git"
@@ -13,13 +12,12 @@
     "manager",
     "api"
   ],
-  "author": "EL AMRANI CHAKIR, IBRAHIM AREDDA",
-  "license": "ISC",
+  "author": {
+
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ELAMRANI744/Databases-Manager-php/issues"
   },
-  "homepage": "https://github.com/ELAMRANI744/Databases-Manager-php#readme",
-  "devDependencies": {
-    "tree-node-cli": "^1.2.5"
-  }
+  "homepage": "https://github.com/ELAMRANI744/Databases-Manager-php#readme"
 }

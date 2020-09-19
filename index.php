@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,19 +23,13 @@
     <!-- Owns -->
     <link rel="stylesheet" href="css/standard.css">
     <link rel="stylesheet" href="css/app.css">
-
     <title>Databases Manager</title>
-
   </head>
   <body>
 
     <div id="ajx-page">
 
-      <?php
-
-        if( !isset($_SESSION['user']) ) include "views/login.html";
-        else include "views/home.html";
-      ?>
+      <?php include isset($_SESSION['user']) ? "views/home.html" : "views/login.html"; ?>
 
     </div>
 
