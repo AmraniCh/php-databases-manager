@@ -9,7 +9,7 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
 # Setting up twig 
-$settings = new FilesystemLoader("$root/views/templates");
+$settings = new FilesystemLoader(__DIR__ . "/views/templates");
 $loader = new Environment($settings);
 
 # Check if there's a database parameter
