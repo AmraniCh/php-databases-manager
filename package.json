@@ -1,23 +1,21 @@
 {
-  "name": "databases-manager-api",
+  "name": "php-databases-manager",
   "version": "1.0.0",
-  "description": "MySQL Database Manager API",
+  "description": "A web application to manage MySQL databases locally",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ELAMRANI744/Databases-Manager-php.git"
+    "url": "git+https://github.com/ELAMRANI744/php-databases-manager"
   },
   "keywords": [
-    "MySQL",
-    "database",
-    "manager",
-    "api"
+    "php",
+    "databases-management",
+    "phpmyadmin",
+    "database-schema",
+    "mysql"
   ],
-  "author": {
-
-  },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ELAMRANI744/Databases-Manager-php/issues"
+    "url": "https://github.com/ELAMRANI744/php-databases-manager/issues"
   },
-  "homepage": "https://github.com/ELAMRANI744/Databases-Manager-php#readme"
+  "homepage": "https://github.com/ELAMRANI744/php-databases-manager#readme"
 }
