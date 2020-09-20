@@ -1,7 +1,5 @@
 <?php
 
-$root = $_SERVER["DOCUMENT_ROOT"] . "/databases-manager-api";
-
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -16,7 +14,7 @@ function load ($directoryPath)
 			include_once "$directoryPath/$item";
 }
 
-load ("$root/modules/utilities");
-load ("$root/modules/models");
+load (dirname(__DIR__) . "/modules/utilities");
+load (dirname(__DIR__) . "/modules/models");
 
 $manager = new Manager ($host, $user, $pass);
