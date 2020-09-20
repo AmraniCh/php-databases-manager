@@ -1,126 +1,237 @@
-/*******************************
-  Created Date : 22/12/2019
-  Application : Databases Manager CSS Standard
-  Version : 1.0
-********************************/
-/***********************************
-  CSS VARIABLES :
-  primary colors: [#222222, #2196F3, #42B25C]
-  secondary colors [#F0F0F0]
-**********************************************/
+:root {
+    --black: #222222;
+    --blue: #2196F3;
+    --green: #42B25C;
+    --gray: #F0F0F0;
+    --light-blue: #286AA7;
+    --text: #555555;
+    --red: #f93a3a
+}
 
-:root{ --black: #222222; --blue: #2196F3; --green: #42B25C; --gray: #F0F0F0; --light-blue: #286AA7; --text: #555555; --red: #f93a3a }
+* {
+    box-sizing: border-box
+}
 
-*{ box-sizing: border-box }
+body {
+    font-family: "Montserrat", "arial", "sans serif";
+    font-size: .85rem;
+    line-height: 1.5
+}
 
-body{ font-family: "Montserrat", "arial", "sans serif"; font-size: .85rem; line-height: 1.5 }
+.heading {
+    font-size: 1.2em;
+    margin: 0
+}
 
-.heading{ font-size: 1.2em; margin: 0 }
+.shadow-btm {
+    box-shadow: -2px 0 2px 2px #333
+}
 
-.shadow-btm{ box-shadow: -2px 0 2px 2px #333 }
-.shadow-top{ box-shadow: 2px 0 3px 1px #333 }
+.shadow-top {
+    box-shadow: 2px 0 3px 1px #333
+}
 
-.float-lt{ float: left } .float-rt{ float: right }
+.float-lt {
+    float: left
+}
 
-.list-unstyled{ list-style: none; margin: 0; padding: 0 }
-.list-inline li{ display: inline-block }
+.float-rt {
+    float: right
+}
 
-.btn{ border: none; padding: 0; background: transparent; color: inherit; cursor: pointer; outline: 0!important; user-select: none}
-.btn:hover{ opacity: .8 }
+.list-unstyled {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
 
-.anchor{ text-decoration: none; color: inherit }
+.list-inline li {
+    display: inline-block
+}
 
-.text-center{ text-align: center } .text-left{ text-align: left } .text-right{ text-align: right }
+.btn {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    outline: 0 !important;
+    user-select: none
+}
 
-.green{ background-color: var(--green) }
-.blue { background-color: var(--blue) }
-.black { background-color: var(--black) }
-.light-blue{ background-color: var(--light-blue) }
-.text-color { color: var(--text) }
-.red{ background-color: var(--red) }
+.btn:hover {
+    opacity: .8
+}
 
-.white{ color: #FFF !important }
+.anchor {
+    text-decoration: none;
+    color: inherit
+}
 
-.icon-big{ font-size: 1.5em }
-.panel-item{ color: #FFF; padding: 10px 8px; cursor: pointer }
-.sidebar .panel-item ul li:nth-child(2){ vertical-align: text-bottom }
+.text-center {
+    text-align: center
+}
 
-.overflow-hdn{ overflow: hidden }
+.text-left {
+    text-align: left
+}
 
-.hide{ display: none } .show{ display: inline-block }
+.text-right {
+    text-align: right
+}
 
-.clearfix{ clear: both }
+.green {
+    background-color: var(--green)
+}
 
-.ver-middle{ vertical-align: middle !important}
+.blue {
+    background-color: var(--blue)
+}
 
-p{ margin: 0 }
+.black {
+    background-color: var(--black)
+}
 
-.bold{ font-weight: 700 }
+.light-blue {
+    background-color: var(--light-blue)
+}
 
-.headline{ border-top: 2px solid #EEE; border-radius: 5px }
+.text-color {
+    color: var(--text)
+}
 
-.input-group{ margin-bottom: 15px }
+.red {
+    background-color: var(--red)
+}
 
-.input-group label{
-  display: block;
-  text-align: left;
-  margin-bottom: 5%;
-  margin-bottom: 8px;
-  color: var(--text-color)
+.white {
+    color: #FFF !important
+}
+
+.icon-big {
+    font-size: 1.5em
+}
+
+.panel-item {
+    color: #FFF;
+    padding: 10px 8px;
+    cursor: pointer
+}
+
+.sidebar .panel-item ul li:nth-child(2) {
+    vertical-align: text-bottom
+}
+
+.overflow-hdn {
+    overflow: hidden
+}
+
+.hide {
+    display: none
+}
+
+.show {
+    display: inline-block
+}
+
+.clearfix {
+    clear: both
+}
+
+.ver-middle {
+    vertical-align: middle !important
+}
+
+p {
+    margin: 0
+}
+
+.bold {
+    font-weight: 700
+}
+
+.headline {
+    border-top: 2px solid #EEE;
+    border-radius: 5px
+}
+
+.input-group {
+    margin-bottom: 15px
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5%;
+    margin-bottom: 8px;
+    color: var(--text-color)
 }
 
 .input {
-  border: 2px solid #ddd;
-  width: 100%;
-  background-color: #FFF;
-  color: var(--text-color);
-  padding: 7px 0;
-  text-indent: 10px;
-  font-size: 1.3em;
-  outline: 0 !important;
-  border-radius: 2px
+    border: 2px solid #ddd;
+    width: 100%;
+    background-color: #FFF;
+    color: var(--text-color);
+    padding: 7px 0;
+    text-indent: 10px;
+    font-size: 1.3em;
+    outline: 0 !important;
+    border-radius: 2px
 }
 
-.select{
-  outline: 0 !important;
-  padding: 6px 12px;
-  width: 100%;
-  border: 2px solid #ddd;
+.select {
+    outline: 0 !important;
+    padding: 6px 12px;
+    width: 100%;
+    border: 2px solid #ddd;
 }
 
-.btn-fill{
-  padding: 8px 20px;
-  color: #fff;
-  font-weight: 500;
-  border-radius: 2px;
+.btn-fill {
+    padding: 8px 20px;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 2px;
 }
 
 /* TABLE ACTIONS BTNS */
-.table-actions button{
-  display: inline-block;
-  padding: 8px 30px;
-  border: 2px solid var(--green);
-  color: var(--green);
-  margin-bottom: 15px
+.table-actions button {
+    display: inline-block;
+    padding: 8px 30px;
+    border: 2px solid var(--green);
+    color: var(--green);
+    margin-bottom: 15px
 }
 
-.table-actions button:last-of-type{ margin-left: -5px }
-.table-actions button.active{ background-color: var(--green); color: #FFF }
+.table-actions button:last-of-type {
+    margin-left: -5px
+}
+
+.table-actions button.active {
+    background-color: var(--green);
+    color: #FFF
+}
 
 /* toggle-table-btn */
-.toggle-table-btn{
-  background-color: var(--green);
-  color: #FFF;
-  padding: 8px;
-  width: 100%;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin: 25px 0;
-  border-radius: 1px;
-  box-shadow: 0 0 2px 0px #333
+.toggle-table-btn {
+    background-color: var(--green);
+    color: #FFF;
+    padding: 8px;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 25px 0;
+    border-radius: 1px;
+    box-shadow: 0 0 2px 0px #333
 }
 
-.toggle-table-btn span{ margin-left: 15px }
+.toggle-table-btn span {
+    margin-left: 15px
+}
 
-.toggle-table-btn[data-toggle='open'] .mdi.open{ display: inline-block }
-.toggle-table-btn[data-toggle='close'] .mdi.close{ display: inline-block }
+.toggle-table-btn[data-toggle='open'] .mdi.open {
+    display: inline-block
+}
+
+.toggle-table-btn[data-toggle='close'] .mdi.close {
+    display: inline-block
+}

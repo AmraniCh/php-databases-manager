@@ -1,471 +1,618 @@
 /* START HEADER */
-.header{ height: 50px; color: #FFF }
-
-.header .header-brand{
-  height: 100%;
-  padding-right: 10px;
-  font-size: 1.1em;
-  text-transform: uppercase
+.header {
+    height: 50px;
+    color: #FFF
 }
 
-.header .header-brand span{
-  line-height: 50px;
-  font-weight: 600;
-  padding-left: 6px
+.header .header-brand {
+    height: 100%;
+    padding-right: 10px;
+    font-size: 1.1em;
+    text-transform: uppercase
 }
 
-.header .header-brand, .header .traingle-right{ cursor: pointer }
-
-.header .traingle-right{
-  width: 0;
-  height: 0;
-  border-top: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-bottom: 25px solid transparent;
-  border-left: 25px solid;
-  border-left-color: var(--blue)
+.header .header-brand span {
+    line-height: 50px;
+    font-weight: 600;
+    padding-left: 6px
 }
 
-.header a:hover{ color: #FFF }
-
-.header .header-items .header-menu{ user-select: none }
-
-.header .header-items .header-menu li{ margin-left: 15px; float: left }
-
-.header .header-items .header-menu .cercle-badge{
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid #333;
-  margin-top: 15px; /* (50px - 20px) / 2 = 15px */
-  cursor: pointer;
-  position: relative
+.header .header-brand, .header .traingle-right {
+    cursor: pointer
 }
 
-.header .header-items .header-menu .cercle-badge[data-toggle='success']{ background-color: #3DFF44 }
-.header .header-items .header-menu .cercle-badge[data-toggle='error']{ background-color: red }
-
-.header .header-items .header-menu .cercle-badge .popup{
-  position: absolute;
-  top: 40px;
-  left: -62px;
-  padding: 12px 8px;
-  width: 150px;
-  line-height: 1.5;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 1em;
-  display: none;
-  z-index: 999
+.header .traingle-right {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid;
+    border-left-color: var(--blue)
 }
 
-.header .header-items .header-menu .cercle-badge .popup .popup-content{
-  font-size: .9em;
-  text-transform: capitalize;
-  font-weight: 500
+.header a:hover {
+    color: #FFF
 }
 
-.header .header-items .header-menu .cercle-badge[data-toggle='success']:hover .popup[data-value="success"]{
-  display: block
+.header .header-items .header-menu {
+    user-select: none
 }
 
-.header .header-items .header-menu .cercle-badge[data-toggle='error']:hover .popup[data-value="error"]{
-  display: block
+.header .header-items .header-menu li {
+    margin-left: 15px;
+    float: left
 }
 
-.header .header-items .header-menu .cercle-badge .triangle-top{
-  display: inline-block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-bottom: 15px solid;
-  border-bottom-color: var(--blue);
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  top: -15px;
-  left: 58px
+.header .header-items .header-menu .cercle-badge {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    margin-top: 15px; /* (50px - 20px) / 2 = 15px */
+    cursor: pointer;
+    position: relative
 }
 
-.header .header-items .header-menu .username{ line-height: 50px; font-weight: 500; font-size: 1.2em }
-.header .header-items .header-menu .settings-btn{ line-height: 50px; height: 50px; padding: 0 10px }
-.header .header-items .header-menu .settings-btn i.mdi{ font-size: 24px }
-
-.header .header-items .header-menu .settings-menu{
-  position: absolute;
-  top: 50px;
-  left: -71px;
-  width: 115px;
-  font-size: .95em;
-  border-radius: 0 0 0 5px;
-  background-color: var(--blue);
-  display: none;
-  z-index: 999;
-  box-shadow: #555 -2px 3px 5px 0px
+.header .header-items .header-menu .cercle-badge[data-toggle='success'] {
+    background-color: #3DFF44
 }
 
-.header .header-items .header-menu li:last-of-type{ position: relative }
-
-.header .header-items .header-menu .settings-menu ul li{
-  float: none;
-  margin: 0;
-  cursor: pointer;
-  font-weight: 500;
-  width: 100%;
+.header .header-items .header-menu .cercle-badge[data-toggle='error'] {
+    background-color: red
 }
 
-.header .header-items .header-menu .settings-menu ul li button{
-  padding: 8px
+.header .header-items .header-menu .cercle-badge .popup {
+    position: absolute;
+    top: 40px;
+    left: -62px;
+    padding: 12px 8px;
+    width: 150px;
+    line-height: 1.5;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1em;
+    display: none;
+    z-index: 999
 }
 
-.header .header-items .header-menu .settings-menu ul li:hover{
-  background-color: var(--black);
-  color: #FFF;
-  border-radius: 0 0 0 5px
+.header .header-items .header-menu .cercle-badge .popup .popup-content {
+    font-size: .9em;
+    text-transform: capitalize;
+    font-weight: 500
 }
 
-.header .header-items .header-menu ul li span{ text-transform: capitalize }
-.header .header-items .header-menu ul li .mdi{ font-size: 15px }
+.header .header-items .header-menu .cercle-badge[data-toggle='success']:hover .popup[data-value="success"] {
+    display: block
+}
+
+.header .header-items .header-menu .cercle-badge[data-toggle='error']:hover .popup[data-value="error"] {
+    display: block
+}
+
+.header .header-items .header-menu .cercle-badge .triangle-top {
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 15px solid;
+    border-bottom-color: var(--blue);
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    top: -15px;
+    left: 58px
+}
+
+.header .header-items .header-menu .username {
+    line-height: 50px;
+    font-weight: 500;
+    font-size: 1.2em
+}
+
+.header .header-items .header-menu .settings-btn {
+    line-height: 50px;
+    height: 50px;
+    padding: 0 10px
+}
+
+.header .header-items .header-menu .settings-btn i.mdi {
+    font-size: 24px
+}
+
+.header .header-items .header-menu .settings-menu {
+    position: absolute;
+    top: 50px;
+    left: -71px;
+    width: 115px;
+    font-size: .95em;
+    border-radius: 0 0 0 5px;
+    background-color: var(--blue);
+    display: none;
+    z-index: 999;
+    box-shadow: #555 -2px 3px 5px 0px
+}
+
+.header .header-items .header-menu li:last-of-type {
+    position: relative
+}
+
+.header .header-items .header-menu .settings-menu ul li {
+    float: none;
+    margin: 0;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+}
+
+.header .header-items .header-menu .settings-menu ul li button {
+    padding: 8px
+}
+
+.header .header-items .header-menu .settings-menu ul li:hover {
+    background-color: var(--black);
+    color: #FFF;
+    border-radius: 0 0 0 5px
+}
+
+.header .header-items .header-menu ul li span {
+    text-transform: capitalize
+}
+
+.header .header-items .header-menu ul li .mdi {
+    font-size: 15px
+}
 
 /* STRAT SIDEBAR */
-.sidebar{
-  position: relative;
-  float: left;
-  width: 19%;
-  background-color: #FFF;
-  height: calc(100vh - 50px);
-  color: #222;
-  overflow: auto
+.sidebar {
+    position: relative;
+    float: left;
+    width: 19%;
+    background-color: #FFF;
+    height: calc(100vh - 50px);
+    color: #222;
+    overflow: auto
 }
 
-.sidebar .filter-panel[data-toggle='open'] button[data-value='open']{ display: inline-block }
-.sidebar .filter-panel[data-toggle='close'] button[data-value='close']{ display: inline-block }
+.sidebar .filter-panel[data-toggle='open'] button[data-value='open'] {
+    display: inline-block
+}
 
-.sidebar .sidebar-databases-items{ margin-top: 10% }
-.sidebar .database-item[data-toggle='open'] button[data-value='open']{ display: inline-block }
-.sidebar .database-item[data-toggle='close'] button[data-value='close']{ display: inline-block }
+.sidebar .filter-panel[data-toggle='close'] button[data-value='close'] {
+    display: inline-block
+}
+
+.sidebar .sidebar-databases-items {
+    margin-top: 10%
+}
+
+.sidebar .database-item[data-toggle='open'] button[data-value='open'] {
+    display: inline-block
+}
+
+.sidebar .database-item[data-toggle='close'] button[data-value='close'] {
+    display: inline-block
+}
 
 .sidebar .database-item,
-.sidebar .user-item { position: relative; border-bottom: 3px solid var(--black) }
-
-.sidebar .database-table-items .table-size{ vertical-align: text-top }
-.sidebar .database-table-items .table-item.selected{ opacity: .8 }
-.sidebar .database-table-items .table-item ul{ margin-left: 12px }
-
-.sidebar .user-item.selected{ background-color: var(--black) }
-
-.sidebar .toggle-logs-section{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 19%;
-  padding: 15px;
-  border-top: 1px solid #eee;
-  background-color: #FFF
+.sidebar .user-item {
+    position: relative;
+    border-bottom: 3px solid var(--black)
 }
 
-.sidebar .toggle-logs-section button{
-  background-color: var(--green);
-  padding: 6px 0;
-  color: #FFF;
-  font-weight: 500;
-  font-size: 1em;
-  border-radius: 2px;
-  text-transform: capitalize;
-  width: 100%
+.sidebar .database-table-items .table-size {
+    vertical-align: text-top
 }
 
-.sidebar .toggle-logs-section button .mdi{ vertical-align: sub; margin-left: 10px}
+.sidebar .database-table-items .table-item.selected {
+    opacity: .8
+}
 
-.sidebar .sidebar-databases-items{ height: 75%; overflow: auto }
+.sidebar .database-table-items .table-item ul {
+    margin-left: 12px
+}
 
-.toggle-logs-btn[data-toggle='close'] .mdi.close{ display: inline-block }
-.toggle-logs-btn[data-toggle='open'] .mdi.open{ display: inline-block }
+.sidebar .user-item.selected {
+    background-color: var(--black)
+}
+
+.sidebar .toggle-logs-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 19%;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background-color: #FFF
+}
+
+.sidebar .toggle-logs-section button {
+    background-color: var(--green);
+    padding: 6px 0;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 2px;
+    text-transform: capitalize;
+    width: 100%
+}
+
+.sidebar .toggle-logs-section button .mdi {
+    vertical-align: sub;
+    margin-left: 10px
+}
+
+.sidebar .sidebar-databases-items {
+    height: 75%;
+    overflow: auto
+}
+
+.toggle-logs-btn[data-toggle='close'] .mdi.close {
+    display: inline-block
+}
+
+.toggle-logs-btn[data-toggle='open'] .mdi.open {
+    display: inline-block
+}
 
 
 /* START SECTION */
 
-.full-container{
-  position: relative;
-  float: right;
-  width: 81%;
-  height: calc(100vh - 50px)
+.full-container {
+    position: relative;
+    float: right;
+    width: 81%;
+    height: calc(100vh - 50px)
 }
 
-.inner-container{
-  position: relative;
-  background-color: var(--gray);
-  padding: 25px;
-  height: 100%;
- }
-
-.section-container{
-  background-color: #FFF;
-  position: relative;
-  height: calc(100vh - (25px + 25px + 35px + 50px)); /* 25px pd-top + 25px pd-btm + 35px footer height + 50px header height */
-  padding: 25px;
-  border-radius: 8px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  border: 1px solid #e2e2e2;
-  width: 100%;
-  z-index: 1 /* logs panel */
+.inner-container {
+    position: relative;
+    background-color: var(--gray);
+    padding: 25px;
+    height: 100%;
 }
 
-.section-container .section-header{padding: 10px 5px}
-.section-container .section-header .title{ font-size: 1.5em }
-
-.section-container .section-content {margin-top: 25px}
-
-.section-container .no-selected{
-  text-transform: capitalize;
-  color: #8B8B8B;
-  font-size: 2.8em;
-  padding-top: calc((100vh - 260px) / 2)
+.section-container {
+    background-color: #FFF;
+    position: relative;
+    height: calc(100vh - (25px + 25px + 35px + 50px)); /* 25px pd-top + 25px pd-btm + 35px footer height + 50px header height */
+    padding: 25px;
+    border-radius: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #e2e2e2;
+    width: 100%;
+    z-index: 1 /* logs panel */
 }
 
-.section-container .dt-container{ overflow: auto }
+.section-container .section-header {
+    padding: 10px 5px
+}
 
-.section-container .section-content .add-row-btn{
-  margin-top: 20px;
-  width: 170px;
+.section-container .section-header .title {
+    font-size: 1.5em
+}
+
+.section-container .section-content {
+    margin-top: 25px
+}
+
+.section-container .no-selected {
+    text-transform: capitalize;
+    color: #8B8B8B;
+    font-size: 2.8em;
+    padding-top: calc((100vh - 260px) / 2)
+}
+
+.section-container .dt-container {
+    overflow: auto
+}
+
+.section-container .section-content .add-row-btn {
+    margin-top: 20px;
+    width: 170px;
 }
 
 /* MODAL EDIT & MODAL DELETE && MODAL ADD NEW ROW */
-.modal-edit-overlay, .modal-delete-overlay, .modal-add-overlay, .modal-adduser-overlay, .modal-deleteuser-overlay{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, .5)
+.modal-edit-overlay, .modal-delete-overlay, .modal-add-overlay, .modal-adduser-overlay, .modal-deleteuser-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .5)
 }
 
-.modal-edit-insert{
-  position: absolute;
-  top: -20%; bottom: 0;
-  left: 0; right: 0;
-  width: 60%;
-  height: 65vh;
-  margin: auto;
-  background-color: #FFF;
-  border-radius: 6px 6px 0 0
+.modal-edit-insert {
+    position: absolute;
+    top: -20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 60%;
+    height: 65vh;
+    margin: auto;
+    background-color: #FFF;
+    border-radius: 6px 6px 0 0
 }
 
 .modal-edit-insert .modal-section,
-.modal-edit-insert .modal-header { padding: 15px 15px 0 15px }
-
-.modal-delete{
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  width: 30%;
-  height: 25vh;
-  margin: auto;
-  background-color: #FFF;
-  border-radius: 6px;
-  padding: 10px
+.modal-edit-insert .modal-header {
+    padding: 15px 15px 0 15px
 }
 
-.modal-delete .modal-section{
-  padding: 15px 0
+.modal-delete {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 30%;
+    height: 25vh;
+    margin: auto;
+    background-color: #FFF;
+    border-radius: 6px;
+    padding: 10px
 }
 
-.modal-edit-insert-overlay.active .modal-edit-insert{ display: block }
-
-.modal-edit-insert .modal-section{ overflow-y: auto; height: calc(100% - 38px) }
-
-.modal-edit-insert .modal-footer{
-  padding: 10px 16px;
-  background-color: #eee;
-  border-radius: 0 0 6px 6px;
-  height: 50px
+.modal-delete .modal-section {
+    padding: 15px 0
 }
 
-.modal-action{
-  position: absolute;
-  bottom: 0;
-  padding: 15px;
-  text-align: center;
-  width: 100%;
-  margin: auto
+.modal-edit-insert-overlay.active .modal-edit-insert {
+    display: block
 }
 
-.modal-action button{ margin: 0 15px }
-
-.modal-header{
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-  font-size: 1.2em;
-  font-weight: 600
+.modal-edit-insert .modal-section {
+    overflow-y: auto;
+    height: calc(100% - 38px)
 }
 
- /* START FOOTER */
- .footer{
-   position: absolute;
-   background-color: var(--black);
-   bottom: 0;
-   width: 100%;
-   color: #fff;
-   padding: 0 25px;
-   font-size: .8em;
-   height: 35px;
-   user-select: none;
-   display: table;
-   text-align: right;
-   z-index: 1 /* LOGS PANEL */
- }
+.modal-edit-insert .modal-footer {
+    padding: 10px 16px;
+    background-color: #eee;
+    border-radius: 0 0 6px 6px;
+    height: 50px
+}
 
-.footer .copyrights{ display: table-cell; vertical-align: middle }
-.footer .copyrights .mdi{ font-size: 22px; vertical-align: sub }
+.modal-action {
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    margin: auto
+}
 
-.modal-adduser-overlay .modal-edit-insert{
-  width: 32%;
-  height: 38vh;
+.modal-action button {
+    margin: 0 15px
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 1.2em;
+    font-weight: 600
+}
+
+/* START FOOTER */
+.footer {
+    position: absolute;
+    background-color: var(--black);
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    padding: 0 25px;
+    font-size: .8em;
+    height: 35px;
+    user-select: none;
+    display: table;
+    text-align: right;
+    z-index: 1 /* LOGS PANEL */
+}
+
+.footer .copyrights {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.footer .copyrights .mdi {
+    font-size: 22px;
+    vertical-align: sub
+}
+
+.modal-adduser-overlay .modal-edit-insert {
+    width: 32%;
+    height: 38vh;
 }
 
 
 /* LOGIN CONTAINER */
-body{ background-color: var(--blue) !important } /* BUTTOM SKEW SHAPE */
-
-.login-container{
-  background-color: #FFF;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 23%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 5px 1px #ddd;
-  border-radius: 5px
+body {
+    background-color: var(--blue) !important
 }
 
-.login-container .form-header{
-  background-color: var(--green);
-  color: #FFF;
-  display: table;
-  width: 100%;
-  padding: 30px 10px;
-  border-radius: 5px 5px 0 0
+/* BUTTOM SKEW SHAPE */
+
+.login-container {
+    background-color: #FFF;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 23%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px 1px #ddd;
+    border-radius: 5px
 }
 
-.login-container .form-header h2{
-  font-size: 1.9em;
-  text-transform: capitalize;
-  display: table-cell;
-  vertical-align: middle
+.login-container .form-header {
+    background-color: var(--green);
+    color: #FFF;
+    display: table;
+    width: 100%;
+    padding: 30px 10px;
+    border-radius: 5px 5px 0 0
 }
 
-.login-container .form-section{ padding: 20px 20px 0px 20px }
-
-.login-container .form-section .connection{ margin: 20px 0 }
-
-.login-container .form-section .connection button{ padding: 12px; width: 100% }
-
-.shape-top{
-  position: absolute;
-  top: -40px;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background-color: var(--blue);
-  transform: skewY(-1.8deg)
+.login-container .form-header h2 {
+    font-size: 1.9em;
+    text-transform: capitalize;
+    display: table-cell;
+    vertical-align: middle
 }
 
-.shape-bottom{
-  background-color: #FFF;
-  transform: skewY(-1.8deg);
-  height: 90vh
+.login-container .form-section {
+    padding: 20px 20px 0px 20px
+}
+
+.login-container .form-section .connection {
+    margin: 20px 0
+}
+
+.login-container .form-section .connection button {
+    padding: 12px;
+    width: 100%
+}
+
+.shape-top {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: var(--blue);
+    transform: skewY(-1.8deg)
+}
+
+.shape-bottom {
+    background-color: #FFF;
+    transform: skewY(-1.8deg);
+    height: 90vh
 }
 
 /* LOGS PANEL */
-.logs-panel{
-  position: absolute;
-  bottom: 0; left: 0;
-  z-index: 99; /* FOOTER & SECTION-CONTENT */
-  width: 100%;
-  background-color: #FFF;
-  height: 30vh
+.logs-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 99; /* FOOTER & SECTION-CONTENT */
+    width: 100%;
+    background-color: #FFF;
+    height: 30vh
 }
 
-.logs-panel .panel-header{
-  background-color: var(--light-blue);
-  padding: 0 20px;
-  font-size: 1.1em;
-  height: 40px;
-  border-radius: 5px 5px 0 0
+.logs-panel .panel-header {
+    background-color: var(--light-blue);
+    padding: 0 20px;
+    font-size: 1.1em;
+    height: 40px;
+    border-radius: 5px 5px 0 0
 }
 
-.logs-panel .panel-header .title{ line-height: 35px }
-
-.logs-panel .panel-header .title .logs-icon{ font-size: 1.2em; margin-right: 8px}
-
-.logs-panel .panel-actions{ line-height: 40px }
-
-
-.logs-panel .panel-header .mdi{ color: #6C6C6C }
-.logs-panel .panel-header .info{ font-weight: 600 }
-.logs-panel .panel-header .logs-count{ font-weight: 400; font-size: .9em; margin-left: 6px }
-
-.logs-panel .panel-actions .mdi:first-of-type{ margin-right: 7px }
-
-.logs-panel .panel-content{ padding: 14px; overflow: auto }
-
-.logs-panel .panel-content .log-item{ display: flex; align-items: center }
-
-.logs-panel .panel-content .log-item[data-type='delete'] .badge{
-  content: '';
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 7.5px;
-  vertical-align: middle;
-  background-color: var(--red)
+.logs-panel .panel-header .title {
+    line-height: 35px
 }
 
-.logs-panel .panel-content .log-item[data-type='update'] .badge{
-  content: '';
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 7.5px;
-  vertical-align: middle;
-  background-color: var(--green)
+.logs-panel .panel-header .title .logs-icon {
+    font-size: 1.2em;
+    margin-right: 8px
 }
 
-.logs-panel .panel-content .log-item[data-type='insert'] .badge{
-  content: '';
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 7.5px;
-  vertical-align: middle;
-  background-color: var(--blue)
+.logs-panel .panel-actions {
+    line-height: 40px
 }
 
-.logs-panel .panel-content .log-item .log-item-content{
-  display: inline-block;
-  background-color: #E2E2E2;
-  width: 95%;
-  padding: 8px;
-  margin-bottom: 6px;
-  border-radius: 5px;
-  margin-left: 12px
+
+.logs-panel .panel-header .mdi {
+    color: #6C6C6C
 }
 
-.logs-panel .no-table-selected{
-  width: 100%;
-  margin: auto;
-  padding-top: 7vh;
-  display: block;
-  font-size: 1.5em
+.logs-panel .panel-header .info {
+    font-weight: 600
 }
 
-.logs-panel.active .no-table-selected{ display: none }
+.logs-panel .panel-header .logs-count {
+    font-weight: 400;
+    font-size: .9em;
+    margin-left: 6px
+}
+
+.logs-panel .panel-actions .mdi:first-of-type {
+    margin-right: 7px
+}
+
+.logs-panel .panel-content {
+    padding: 14px;
+    overflow: auto
+}
+
+.logs-panel .panel-content .log-item {
+    display: flex;
+    align-items: center
+}
+
+.logs-panel .panel-content .log-item[data-type='delete'] .badge {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 7.5px;
+    vertical-align: middle;
+    background-color: var(--red)
+}
+
+.logs-panel .panel-content .log-item[data-type='update'] .badge {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 7.5px;
+    vertical-align: middle;
+    background-color: var(--green)
+}
+
+.logs-panel .panel-content .log-item[data-type='insert'] .badge {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 7.5px;
+    vertical-align: middle;
+    background-color: var(--blue)
+}
+
+.logs-panel .panel-content .log-item .log-item-content {
+    display: inline-block;
+    background-color: #E2E2E2;
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 6px;
+    border-radius: 5px;
+    margin-left: 12px
+}
+
+.logs-panel .no-table-selected {
+    width: 100%;
+    margin: auto;
+    padding-top: 7vh;
+    display: block;
+    font-size: 1.5em
+}
+
+.logs-panel.active .no-table-selected {
+    display: none
+}
 
 /* OTHERS */
-#table-permissions_wrapper{ margin-top: 30px }
+#table-permissions_wrapper {
+    margin-top: 30px
+}
 
-.dt-container[data-toggle='data'] #table-structure_wrapper{ display: none }
+.dt-container[data-toggle='data'] #table-structure_wrapper {
+    display: none
+}
 
-.btn-schema {margin-right: 5px;}
+.btn-schema {
+    margin-right: 5px;
+}
 
