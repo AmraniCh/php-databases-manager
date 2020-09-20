@@ -1,36 +1,41 @@
-# Databases Manager API
+# php-databases-manager
 
-<h3>Description</h3>
-<p>This project is a simulation of PHPMyAdmin, it allows you to control all of your data (excluding data definition mechanisms).</p>
+# Description
 
-![](https://i.imgur.com/QDV1Kzq.png)
+This project is a simulation of phpMyAdmin, it allows you to control all of your data (excluding data definition mechanisms).
 
-<h5>Database Schema Visualization</h5>
+![](https://user-images.githubusercontent.com/49124992/93707683-ae508e80-fb28-11ea-892e-0fe86c6c268c.gif)
 
-![](https://i.imgur.com/8hfwPXP.png)
+# Requirements
 
-<h3>Functionalities</h3>
+* PHP version >= 7.1.*
 
-<ul>
-  <li>The application depends on user's authentication.</li>
-  <li>It provides the user the ability to navigate all databases -as well as their tables- whom he is allowed to see.</li>
-  <li>Not to mention, it also serves the possibility of editing, inserting and deleting records.</li>
-  <li>Showing current user permissions.</li>
-  <li>The possibility of visualizing a database schema.</li>
-</ul>
+# Functionalities
 
-## Usage
+- The application depends on user's authentication.
+- It provides the user the ability to navigate all databases -as well as their tables- whom he is allowed to see.
+- Not to mention, it also serves the possibility of editing, inserting and deleting records.
+- Showing current user permissions.
+- The possibility of visualizing a database schema.
 
-Download from github, clone the repo :
+## Installation
+
+Download directly from github or clone the repo using this command :
 
 ```console
-  git clone https://github.com/ELAMRANI744/Databases-Manager-api
+  git clone https://github.com/ELAMRANI744/php-databases-manager
 ```
 
-Then run application in localhost :
+Install composer dependencies :
+
+```console
+  composer install
+```
+
+Then run the application in localhost :
 
 ```
-  localhost/Databases-Manager-api
+  localhost/php-databases-manager
 ```
 
 ## What's included
@@ -118,12 +123,8 @@ Databases-Manager-api
 └── README.md
 ```
 
-## License
-
-Copyright 2020 To (<b>EL AMRANI CHAKIR, IBRAHIM AREDDA</b>) Team Licensed under MIT (https://github.com/ELAMRANI744/Databases-Manager-api/blob/master/LICENSE).
-
 ## Wireframing & Mockup
 
-See in **[Behance](https://www.behance.net/gallery/90446911/Databases-Manager-API)**.
+See in **[Behance](https://www.behance.net/gallery/90446911/PHP-Databases-Manager)**.
 
 
